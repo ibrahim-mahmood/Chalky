@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>ChalkySpeed1</key>
+	<integer>50</integer>
+	<key>ChalkySpeed2</key>
+	<integer>75</integer>
+	<key>ChalkySpeed3</key>
+	<integer>25</integer>
+	<key>DusterSpeed1</key>
+	<integer>3</integer>
+	<key>DusterSpeed2</key>
+	<integer>2</integer>
+	<key>DusterSpeed3</key>
+	<integer>1</integer>
+	<key>InitialLevel</key>
+	<integer>1</integer>
+	<key>NewChalkyInterval</key>
+	<integer>5</integer>
+	<key>PointsNormal</key>
+	<integer>5</integer>
+	<key>PointsSpecial</key>
+	<integer>10</integer>
+	<key>SpecialProbability</key>
+	<real>0.5</real>
+	<key>TargetScoreLev1</key>
+	<integer>5</integer>
+	<key>TargetScoreLev2</key>
+	<integer>10</integer>
+	<key>TargetScoreLev3</key>
+	<integer>15</integer>
+	<key>HSModeDuration</key>
+	<integer>100</integer>
+	<key>NormalModeDuration</key>
+	<integer>60</integer>
+</dict>
+</plist>

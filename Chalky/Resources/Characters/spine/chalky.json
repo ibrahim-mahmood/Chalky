@@ -1,0 +1,217 @@
+{
+"bones": [
+	{ "name": "root", "x": -23.3, "y": 107.22 },
+	{ "name": "head", "parent": "root", "length": 36.94, "x": -0.93, "y": 57.93, "rotation": 89.67 },
+	{ "name": "scooty", "parent": "root", "length": 20.46, "x": 23.36, "y": -107.3, "rotation": 93.76 },
+	{ "name": "arm-right", "parent": "head", "length": 34.91, "x": 0.97, "y": -0.48, "rotation": -141.09 },
+	{ "name": "right-leg-upper", "parent": "head", "length": 41.32, "x": -56.85, "y": -1.28, "rotation": -178.32 },
+	{ "name": "spine", "parent": "head", "length": 59.3, "x": 1.45, "y": 0.49, "rotation": -178.32 },
+	{ "name": "arm-left", "parent": "arm-right", "length": 34.15, "x": 0.98, "y": 0.45, "rotation": 26.92 },
+	{ "name": "right-leg-lower", "parent": "right-leg-upper", "length": 50.74, "x": 41.32, "rotation": -21.48 },
+	{ "name": "left-leg-upper", "parent": "right-leg-lower", "length": 43.71, "x": -38.16, "y": -14.49, "rotation": 62.18 },
+	{ "name": "left-leg-lower", "parent": "left-leg-upper", "length": 54.96, "x": 43.35, "y": 0.16, "rotation": -43.84 }
+],
+"slots": [
+	{ "name": "Chalky-scooty", "bone": "scooty", "attachment": "Chalky-scooty" },
+	{ "name": "Chalky-head", "bone": "head", "attachment": "Chalky-head" },
+	{ "name": "Chalky-arm1", "bone": "arm-right", "attachment": "Chalky-arm1" },
+	{ "name": "Chalky-arm2", "bone": "arm-left", "attachment": "Chalky-arm2" },
+	{ "name": "leg-upper", "bone": "right-leg-upper", "attachment": "leg-upper" },
+	{ "name": "leg-lower", "bone": "right-leg-lower", "attachment": "right-leg-lower" },
+	{ "name": "leg-upper2", "bone": "left-leg-upper", "attachment": "leg-upper" },
+	{ "name": "leg-lower2", "bone": "left-leg-lower", "attachment": "leg-lower" },
+	{ "name": "Chalky-spine", "bone": "spine", "attachment": "Chalky-spine" },
+	{ "name": "tyres", "bone": "scooty", "attachment": "tyre-3" },
+	{ "name": "tyres-2", "bone": "scooty", "attachment": "tyre-3" },
+	{ "name": "trail", "bone": "scooty", "attachment": "Chalky-scooty-tyre-trail" },
+	{ "name": "chalky copy", "bone": "root", "attachment": "chalky copy" }
+],
+"skins": {
+	"default": {
+		"Chalky-arm1": {
+			"Chalky-arm1": { "x": 31.7, "y": 16.36, "rotation": 51.42, "width": 70, "height": 32 }
+		},
+		"Chalky-arm2": {
+			"Chalky-arm2": { "x": 38.29, "y": 6.21, "rotation": 24.49, "width": 75, "height": 28 }
+		},
+		"Chalky-head": {
+			"Chalky-head": { "x": 23.32, "y": 0.12, "rotation": -89.67, "width": 43, "height": 47 }
+		},
+		"Chalky-scooty": {
+			"Chalky-scooty": { "x": 81.04, "y": 2.95, "rotation": -93.76, "width": 144, "height": 136 }
+		},
+		"Chalky-spine": {
+			"Chalky-spine": { "x": 29.66, "y": -3.71, "rotation": 88.64, "width": 13, "height": 57 }
+		},
+		"chalky copy": {
+			"chalky copy": { "x": 37.63, "y": 1.85, "width": 124, "height": 210 }
+		},
+		"leg-lower": {
+			"right-leg-lower": { "x": 26.74, "y": 1.19, "rotation": 115.07, "width": 25, "height": 56 }
+		},
+		"leg-lower2": {
+			"leg-lower": { "x": 25.7, "y": 8.21, "rotation": 91.8, "width": 24, "height": 67 }
+		},
+		"leg-upper": {
+			"leg-upper": { "x": 20.4, "y": -0.48, "rotation": 46.06, "width": 37, "height": 41 }
+		},
+		"leg-upper2": {
+			"leg-upper": { "x": 20.92, "y": 1.42, "rotation": 47.95, "width": 37, "height": 41 }
+		},
+		"trail": {
+			"Chalky-scooty-tyre-trail": { "x": 40.2, "y": 94.03, "rotation": -93.76, "width": 35, "height": 33 }
+		},
+		"tyres": {
+			"tyre-1": { "x": 12.26, "y": -64.24, "rotation": -93.76, "width": 30, "height": 29 },
+			"tyre-2": { "x": 12.26, "y": -64.24, "rotation": -93.76, "width": 30, "height": 29 },
+			"tyre-3": { "x": 12.69, "y": -64.27, "rotation": -130.94, "width": 30, "height": 29 }
+		},
+		"tyres-2": {
+			"tyre-1": { "x": 21.07, "y": 69.5, "rotation": -93.76, "width": 30, "height": 29 },
+			"tyre-2": { "x": 21.04, "y": 69.07, "rotation": -93.76, "width": 30, "height": 29 },
+			"tyre-3": { "x": 21.47, "y": 69.05, "rotation": -124.73, "width": 30, "height": 29 }
+		}
+	}
+},
+"animations": {
+	"Falling": {
+		"bones": {
+			"root": {
+				"rotate": [
+					{ "time": 0, "angle": -0.68 },
+					{ "time": 0.0666, "angle": -0.04 },
+					{ "time": 0.1666, "angle": 0.91 },
+					{ "time": 0.3333, "angle": -12.07 },
+					{ "time": 0.4333, "angle": -29.92 },
+					{ "time": 0.5, "angle": -54 },
+					{ "time": 0.5666, "angle": -70.85 }
+				],
+				"translate": [
+					{ "time": 0, "x": -162.92, "y": -1.44 },
+					{ "time": 0.0666, "x": -102.74, "y": -0.66 },
+					{ "time": 0.1666, "x": -12.46, "y": 0.49 },
+					{ "time": 0.3333, "x": 36.15, "y": 0.49 },
+					{ "time": 0.4333, "x": 70.27, "y": -18.26 },
+					{ "time": 0.5, "x": 129.98, "y": -71.15 },
+					{ "time": 0.5666, "x": 160.69, "y": -141.95 }
+				],
+				"scale": [
+					{ "time": 0.0666, "x": 1, "y": 1 }
+				]
+			},
+			"scooty": {
+				"rotate": [
+					{ "time": 0, "angle": 0, "curve": "stepped" },
+					{ "time": 0.0666, "angle": 0, "curve": "stepped" },
+					{ "time": 0.1666, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0, "curve": "stepped" },
+					{ "time": 0.0666, "x": 0, "y": 0, "curve": "stepped" },
+					{ "time": 0.1666, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0.0666, "x": 1, "y": 1 }
+				]
+			}
+		}
+	},
+	"animation": {},
+	"ride": {
+		"bones": {
+			"scooty": {
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 },
+					{ "time": 0.1616, "x": 0, "y": 2.67 },
+					{ "time": 0.3286, "x": 0, "y": 0 },
+					{ "time": 0.5, "x": 0, "y": 2.67 },
+					{ "time": 0.6666, "x": 0, "y": 0 },
+					{ "time": 0.8379, "x": 0, "y": 2.67 },
+					{ "time": 1.0055, "x": 0, "y": 0 }
+				]
+			},
+			"root": {
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 },
+					{ "time": 0.1666, "x": 0, "y": 3.14 },
+					{ "time": 0.3333, "x": 0, "y": 0 },
+					{ "time": 0.5, "x": 0, "y": 3.14 },
+					{ "time": 0.6666, "x": 0, "y": 0 },
+					{ "time": 0.8333, "x": 0, "y": 3.14 },
+					{ "time": 1, "x": 0, "y": 0 }
+				]
+			}
+		},
+		"slots": {
+			"trail": {
+				"color": [
+					{ "time": 0, "color": "ffffff41" },
+					{ "time": 0.0657, "color": "ffffff9a" },
+					{ "time": 0.1616, "color": "ffffffff" },
+					{ "time": 0.2574, "color": "ffffff41" },
+					{ "time": 0.3286, "color": "ffffff9a" },
+					{ "time": 0.419, "color": "ffffffff" },
+					{ "time": 0.545, "color": "ffffff41" },
+					{ "time": 0.6162, "color": "ffffff9a" },
+					{ "time": 0.7066, "color": "ffffffff" },
+					{ "time": 0.8326, "color": "ffffff41" },
+					{ "time": 0.9038, "color": "ffffff9a" },
+					{ "time": 0.9942, "color": "ffffffff" }
+				]
+			},
+			"tyres": {
+				"attachment": [
+					{ "time": 0, "name": "tyre-1" },
+					{ "time": 0.0333, "name": "tyre-2" },
+					{ "time": 0.0819, "name": "tyre-3" },
+					{ "time": 0.1305, "name": "tyre-1" },
+					{ "time": 0.1791, "name": "tyre-2" },
+					{ "time": 0.2277, "name": "tyre-3" },
+					{ "time": 0.2763, "name": "tyre-1" },
+					{ "time": 0.325, "name": "tyre-2" },
+					{ "time": 0.3736, "name": "tyre-3" },
+					{ "time": 0.4222, "name": "tyre-1" },
+					{ "time": 0.4708, "name": "tyre-2" },
+					{ "time": 0.5194, "name": "tyre-3" },
+					{ "time": 0.568, "name": "tyre-1" },
+					{ "time": 0.6166, "name": "tyre-2" },
+					{ "time": 0.6652, "name": "tyre-3" },
+					{ "time": 0.7138, "name": "tyre-1" },
+					{ "time": 0.7625, "name": "tyre-2" },
+					{ "time": 0.8111, "name": "tyre-3" },
+					{ "time": 0.8597, "name": "tyre-1" },
+					{ "time": 0.9083, "name": "tyre-2" },
+					{ "time": 0.9569, "name": "tyre-3" },
+					{ "time": 1.0055, "name": "tyre-1" }
+				]
+			},
+			"tyres-2": {
+				"attachment": [
+					{ "time": 0, "name": "tyre-1" },
+					{ "time": 0.0333, "name": "tyre-2" },
+					{ "time": 0.0819, "name": "tyre-3" },
+					{ "time": 0.1305, "name": "tyre-1" },
+					{ "time": 0.1791, "name": "tyre-2" },
+					{ "time": 0.2277, "name": "tyre-3" },
+					{ "time": 0.2763, "name": "tyre-1" },
+					{ "time": 0.325, "name": "tyre-2" },
+					{ "time": 0.3736, "name": "tyre-3" },
+					{ "time": 0.4222, "name": "tyre-1" },
+					{ "time": 0.4708, "name": "tyre-2" },
+					{ "time": 0.5194, "name": "tyre-3" },
+					{ "time": 0.568, "name": "tyre-1" },
+					{ "time": 0.6166, "name": "tyre-2" },
+					{ "time": 0.6652, "name": "tyre-3" },
+					{ "time": 0.7138, "name": "tyre-1" },
+					{ "time": 0.7625, "name": "tyre-2" },
+					{ "time": 0.8111, "name": "tyre-3" },
+					{ "time": 0.8597, "name": "tyre-1" },
+					{ "time": 0.9083, "name": "tyre-2" },
+					{ "time": 0.9569, "name": "tyre-3" },
+					{ "time": 1.0055, "name": "tyre-1" }
+				]
+			}
+		}
+	}
+}
+}

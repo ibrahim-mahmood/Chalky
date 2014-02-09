@@ -1,0 +1,96 @@
+
+chalky.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+Chalky-arm1
+  rotate: false
+  xy: 127, 71
+  size: 70, 32
+  orig: 70, 32
+  offset: 0, 0
+  index: -1
+Chalky-arm2
+  rotate: false
+  xy: 1, 1
+  size: 75, 28
+  orig: 75, 28
+  offset: 0, 0
+  index: -1
+Chalky-head
+  rotate: false
+  xy: 299, 194
+  size: 43, 47
+  orig: 43, 47
+  offset: 0, 0
+  index: -1
+Chalky-scooty
+  rotate: false
+  xy: 127, 105
+  size: 144, 136
+  orig: 144, 136
+  offset: 0, 0
+  index: -1
+Chalky-scooty-tyre-trail
+  rotate: false
+  xy: 127, 36
+  size: 35, 33
+  orig: 35, 33
+  offset: 0, 0
+  index: -1
+Chalky-spine
+  rotate: false
+  xy: 300, 135
+  size: 13, 57
+  orig: 13, 57
+  offset: 0, 0
+  index: -1
+chalky copy
+  rotate: false
+  xy: 1, 31
+  size: 124, 210
+  orig: 124, 210
+  offset: 0, 0
+  index: -1
+leg-lower
+  rotate: false
+  xy: 273, 174
+  size: 24, 67
+  orig: 24, 67
+  offset: 0, 0
+  index: -1
+leg-upper
+  rotate: false
+  xy: 344, 200
+  size: 37, 41
+  orig: 37, 41
+  offset: 0, 0
+  index: -1
+right-leg-lower
+  rotate: false
+  xy: 273, 116
+  size: 25, 56
+  orig: 25, 56
+  offset: 0, 0
+  index: -1
+tyre-1
+  rotate: false
+  xy: 199, 74
+  size: 30, 29
+  orig: 30, 29
+  offset: 0, 0
+  index: -1
+tyre-2
+  rotate: false
+  xy: 383, 212
+  size: 30, 29
+  orig: 30, 29
+  offset: 0, 0
+  index: -1
+tyre-3
+  rotate: false
+  xy: 164, 40
+  size: 30, 29
+  orig: 30, 29
+  offset: 0, 0
+  index: -1
