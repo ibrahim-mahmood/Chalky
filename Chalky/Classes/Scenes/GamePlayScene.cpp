@@ -210,7 +210,7 @@ void GamePlayScene::addBackground()
 void GamePlayScene::addChalkyForLevel(float level)
 {
     int randomNumber = rand() % 10 + 1;
-    if (randomNumber/10 > CHALKY_MANAGER->specialProbability) {
+    if (randomNumber/10 > CHALKY_MANAGER->getFloatValueForKey(SPECIAL_PROBABILITY_KEY)) {
         int randNumber = rand() % 3 + 1;
         if (randNumber == 1) {
             chalky1Special = true;
@@ -230,7 +230,7 @@ void GamePlayScene::addChalkyForLevel(float level)
         {
             chalky3 = NULL;
             this->setChalky3(CCSkeletonAnimation::createWithFile("chalky.json", "chalky.atlas"));
-            chalky3->setAnimation("ride", true);
+            chalky3->setAnimation(RIDE_ANIMATION_NAME, true);
             chalky3->setPosition(ccp(0.0,CHALKY_MANAGER->bar3Height));
             chalky3->setAnchorPoint(ccp(0.5,0));
             chalky3->setScale(0.5);
@@ -248,7 +248,7 @@ void GamePlayScene::addChalkyForLevel(float level)
         {
             chalky2 = NULL;
             this->setChalky2(CCSkeletonAnimation::createWithFile("chalky.json", "chalky.atlas"));
-            chalky2->setAnimation("ride", true);
+            chalky2->setAnimation(RIDE_ANIMATION_NAME, true);
             chalky2->setPosition(ccp(0.0,CHALKY_MANAGER->bar2Height));
             chalky2->setAnchorPoint(ccp(0.5,0));
             chalky2->setScale(0.5);
@@ -267,7 +267,7 @@ void GamePlayScene::addChalkyForLevel(float level)
         {
             chalky1 = NULL;
             this->setChalky1(CCSkeletonAnimation::createWithFile("chalky.json", "chalky.atlas"));
-            chalky1->setAnimation("ride", true);
+            chalky1->setAnimation(RIDE_ANIMATION_NAME, true);
             chalky1->setPosition(ccp(0.0,CHALKY_MANAGER->bar1Height));
             chalky1->setAnchorPoint(ccp(0.5,0));
             chalky1->setScale(0.5);
@@ -291,7 +291,7 @@ void GamePlayScene::addChalkiesRandomly()
 {
     bool isSpecial = false;
     int rNumber = rand() % 10 + 1;
-    if (rNumber/10 > CHALKY_MANAGER->specialProbability) {
+    if (rNumber/10 > CHALKY_MANAGER->getFloatValueForKey(SPECIAL_PROBABILITY_KEY)) {
         isSpecial = true;
     }
     
@@ -491,24 +491,14 @@ void GamePlayScene::ccTouchesEnded(CCSet *touches, CCEvent* event) {
 
 void GamePlayScene::startGameForLevel(float levelNo)
 {
-    float interval;
-    if (levelNo == 1) {
-        interval = CHALKY_MANAGER->dusterLevel1;
-    }
-    else if (levelNo == 2) {
-        interval = CHALKY_MANAGER->dusterLevel2;
-    }
-    else if (levelNo == 3) {
-        interval = CHALKY_MANAGER->dusterLevel3;
-    }
-    
+    float interval = CHALKY_MANAGER->getFloatValueForKey(levelNo, DUSTER_SPEED_KEY);
     this->schedule(schedule_selector(GamePlayScene::gameLoop), interval);
     if (CHALKY_MANAGER->getGameMode() == kModeHS) {
-        this->schedule(schedule_selector(GamePlayScene::addChalkiesRandomly), CHALKY_MANAGER->newChalkyInterval);
-        this->schedule(schedule_selector(GamePlayScene::goToHighScoreEndScreen), 0, 0, CHALKY_MANAGER->hsModeDuration);
+        this->schedule(schedule_selector(GamePlayScene::addChalkiesRandomly), CHALKY_MANAGER->getFloatValueForKey(CHALKY_INTERVAL_KEY));
+        this->schedule(schedule_selector(GamePlayScene::goToHighScoreEndScreen), 0, 0, CHALKY_MANAGER->getFloatValueForKey(HS_DURATION_KEY));
     }
     else {
-        this->schedule(schedule_selector(GamePlayScene::goToHighScoreEndScreen), 0, 0, CHALKY_MANAGER->normalModeDuration);
+        this->schedule(schedule_selector(GamePlayScene::goToHighScoreEndScreen), 0, 0, CHALKY_MANAGER->getFloatValueForKey(NORMAL_DURATION_KEY));
     }
 }
 
@@ -618,42 +608,27 @@ void GamePlayScene::update(float dt)
         if(chalky1)
         {
             float oldChalkyPosition = chalky1->getPositionX();
-            float newChalkyPosition = oldChalkyPosition + (CHALKY_MANAGER->chalky1Speed * dt);
+            float newChalkyPosition = oldChalkyPosition + (CHALKY_MANAGER->getFloatValueForKey(1, CHALKY_SPEED_KEY) * dt);
             chalky1->setPosition(ccp(newChalkyPosition, chalky1->getPositionY()));
             checkGameEnd1(newChalkyPosition);
         }
         if (chalky2)
         {
             float oldChalkyPosition = chalky2->getPositionX();
-            float newChalkyPosition = oldChalkyPosition + (CHALKY_MANAGER->chalky2Speed * dt);
+            float newChalkyPosition = oldChalkyPosition + (CHALKY_MANAGER->getFloatValueForKey(2, CHALKY_SPEED_KEY) * dt);
             chalky2->setPosition(ccp(newChalkyPosition, chalky2->getPositionY()));
             checkGameEnd2(newChalkyPosition);
         }
         if(chalky3)
         {
             float oldChalkyPosition = chalky3->getPositionX();
-            float newChalkyPosition = oldChalkyPosition + (CHALKY_MANAGER->chalky3Speed * dt);
+            float newChalkyPosition = oldChalkyPosition + (CHALKY_MANAGER->getFloatValueForKey(3, CHALKY_SPEED_KEY) * dt);
             chalky3->setPosition(ccp(newChalkyPosition, chalky3->getPositionY()));
             checkGameEnd3(newChalkyPosition);
         }
         
-        if (currentGameLevel == 1) {
-            if (CHALKY_MANAGER->lastScore >= CHALKY_MANAGER->targetScore1)
-            {
-                goToLevelWinScreen();
-            }
-        }
-        else if (currentGameLevel == 2) {
-            if (CHALKY_MANAGER->lastScore >= CHALKY_MANAGER->targetScore2)
-            {
-                goToLevelWinScreen();
-            }
-        }
-        else if (currentGameLevel >= 3) {
-            if (CHALKY_MANAGER->lastScore >= CHALKY_MANAGER->targetScore3)
-            {
-                goToLevelWinScreen();
-            }
+        if (CHALKY_MANAGER->lastScore >= CHALKY_MANAGER->getFloatValueForKey(currentGameLevel, LEVEL_TARGET_KEY)) {
+            goToLevelWinScreen();
         }
     }
 }
@@ -675,16 +650,10 @@ void GamePlayScene::checkGameEnd1(float chalkyPosition)
 {
     if (CHALKY_MANAGER->chalky1Index >= levelBars1->count()) {
         //GAME WIN CONDITION
-        if (chalky1Special) {
-            CHALKY_MANAGER->lastScore += CHALKY_MANAGER->specialPoints;
-            chalky1Special = false;
-        }
-        else {
-            CHALKY_MANAGER->lastScore += CHALKY_MANAGER->normalPoints;
-        }
-        
+        CHALKY_MANAGER->updatePlayerScore(chalky1Special);
+        chalky1Special = false;
         chalky1->removeFromParentAndCleanup(true);
-        chalky1=NULL;
+        chalky1 = NULL;
     }
     else {
         int tag = 0;
@@ -696,7 +665,7 @@ void GamePlayScene::checkGameEnd1(float chalkyPosition)
             if (!b->isVisible()) {
                 //GAME LOSE CONDITION
                 if(!chalky2 && !chalky3)
-                gameEnd();
+                    gameEnd();
                 playChalkyLoseAnimation(chalky1);
             }
         }
@@ -706,15 +675,10 @@ void GamePlayScene::checkGameEnd2(float chalkyPosition)
 {
     if (CHALKY_MANAGER->chalky2Index >= levelBars2->count()) {
         //GAME WIN CONDITION
-        if (chalky2Special) {
-            CHALKY_MANAGER->lastScore += CHALKY_MANAGER->specialPoints;
-            chalky2Special = false;
-        }
-        else {
-            CHALKY_MANAGER->lastScore += CHALKY_MANAGER->normalPoints;
-        }
+        CHALKY_MANAGER->updatePlayerScore(chalky2Special);
+        chalky2Special = false;
         chalky2->removeFromParentAndCleanup(true);
-        chalky2=NULL;
+        chalky2 = NULL;
     }
     else {
         int tag = 0;
@@ -728,7 +692,7 @@ void GamePlayScene::checkGameEnd2(float chalkyPosition)
             if (!b->isVisible()) {
                 //GAME LOSE CONDITION
                 if(!chalky1 && !chalky3)
-                gameEnd();
+                    gameEnd();
                 playChalkyLoseAnimation(chalky2);
             }
         }
@@ -738,13 +702,8 @@ void GamePlayScene::checkGameEnd3(float chalkyPosition)
 {
     if (CHALKY_MANAGER->chalky3Index >= levelBars3->count()) {
         //GAME WIN CONDITION
-        if (chalky3Special) {
-            CHALKY_MANAGER->lastScore += CHALKY_MANAGER->specialPoints;
-            chalky3Special = false;
-        }
-        else {
-            CHALKY_MANAGER->lastScore += CHALKY_MANAGER->normalPoints;
-        }
+        CHALKY_MANAGER->updatePlayerScore(chalky3Special);
+        chalky3Special = false;
         chalky3->removeFromParentAndCleanup(true);
         chalky3=NULL;
     }
@@ -760,7 +719,7 @@ void GamePlayScene::checkGameEnd3(float chalkyPosition)
             if (!b->isVisible()) {
                 //GAME LOSE CONDITION
                 if(!chalky1 && !chalky2)
-                gameEnd();
+                    gameEnd();
                 playChalkyLoseAnimation(chalky3);
             }
         }

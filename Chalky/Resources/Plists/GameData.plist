@@ -5,9 +5,9 @@
 	<key>ChalkySpeed1</key>
 	<integer>50</integer>
 	<key>ChalkySpeed2</key>
-	<integer>75</integer>
+	<integer>40</integer>
 	<key>ChalkySpeed3</key>
-	<integer>25</integer>
+	<integer>60</integer>
 	<key>DusterSpeed1</key>
 	<integer>3</integer>
 	<key>DusterSpeed2</key>

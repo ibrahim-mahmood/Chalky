@@ -22,8 +22,7 @@ public :
     static Bar *create(CCSprite* normalSprite, CCSprite* selectedSprite, CCObject* target, SEL_MenuHandler selector);
     static Bar *create(CCSprite* normalSprite, CCSprite* selectedSprite, CCSprite* disabledSprite, CCObject* target, SEL_MenuHandler selector);
     
-private :
-    
+private :    
     Bar();
     ~Bar();
     bool init(CCSprite* normalSprite, CCSprite* selectedSprite, CCSprite* disabledSprite = NULL);

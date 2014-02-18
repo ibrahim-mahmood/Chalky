@@ -178,8 +178,7 @@
 		10C8020A18A755BB0079E0F1 /* yellow_8-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 10C801C618A755BB0079E0F1 /* yellow_8-1.png */; };
 		10C8020B18A755BB0079E0F1 /* yellow_8.png in Resources */ = {isa = PBXBuildFile; fileRef = 10C801C718A755BB0079E0F1 /* yellow_8.png */; };
 		10C8020C18A755BB0079E0F1 /* yellow_9.png in Resources */ = {isa = PBXBuildFile; fileRef = 10C801C818A755BB0079E0F1 /* yellow_9.png */; };
-		10C8020D18A755BB0079E0F1 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 10C801CA18A755BB0079E0F1 /* Info.plist */; };
-		10C8020E18A755BB0079E0F1 /* LevelData.plist in Resources */ = {isa = PBXBuildFile; fileRef = 10C801CB18A755BB0079E0F1 /* LevelData.plist */; };
+		10C8020E18A755BB0079E0F1 /* GameData.plist in Resources */ = {isa = PBXBuildFile; fileRef = 10C801CB18A755BB0079E0F1 /* GameData.plist */; };
 		10C8020F18A755BB0079E0F1 /* chalky-portal-blue.png in Resources */ = {isa = PBXBuildFile; fileRef = 10C801CD18A755BB0079E0F1 /* chalky-portal-blue.png */; };
 		10C8021018A755BB0079E0F1 /* chalky-portal-red.png in Resources */ = {isa = PBXBuildFile; fileRef = 10C801CE18A755BB0079E0F1 /* chalky-portal-red.png */; };
 		10C8021118A755BB0079E0F1 /* chalky-portal-yellow.png in Resources */ = {isa = PBXBuildFile; fileRef = 10C801CF18A755BB0079E0F1 /* chalky-portal-yellow.png */; };
@@ -657,7 +656,7 @@
 		10C801C718A755BB0079E0F1 /* yellow_8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yellow_8.png; sourceTree = "<group>"; };
 		10C801C818A755BB0079E0F1 /* yellow_9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yellow_9.png; sourceTree = "<group>"; };
 		10C801CA18A755BB0079E0F1 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		10C801CB18A755BB0079E0F1 /* LevelData.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = LevelData.plist; sourceTree = "<group>"; };
+		10C801CB18A755BB0079E0F1 /* GameData.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = GameData.plist; sourceTree = "<group>"; };
 		10C801CD18A755BB0079E0F1 /* chalky-portal-blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chalky-portal-blue.png"; sourceTree = "<group>"; };
 		10C801CE18A755BB0079E0F1 /* chalky-portal-red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chalky-portal-red.png"; sourceTree = "<group>"; };
 		10C801CF18A755BB0079E0F1 /* chalky-portal-yellow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chalky-portal-yellow.png"; sourceTree = "<group>"; };
@@ -1637,7 +1636,7 @@
 			isa = PBXGroup;
 			children = (
 				10C801CA18A755BB0079E0F1 /* Info.plist */,
-				10C801CB18A755BB0079E0F1 /* LevelData.plist */,
+				10C801CB18A755BB0079E0F1 /* GameData.plist */,
 			);
 			path = Plists;
 			sourceTree = "<group>";
@@ -2602,7 +2601,7 @@
 				10C801D318A755BB0079E0F1 /* background.jpg in Resources */,
 				10C8020118A755BB0079E0F1 /* yellow_0.png in Resources */,
 				10C8021218A755BB0079E0F1 /* erasing.m4a in Resources */,
-				10C8020E18A755BB0079E0F1 /* LevelData.plist in Resources */,
+				10C8020E18A755BB0079E0F1 /* GameData.plist in Resources */,
 				10C801E318A755BB0079E0F1 /* Icon-72.png in Resources */,
 				10C801E118A755BB0079E0F1 /* chalky.json in Resources */,
 				10C801FD18A755BB0079E0F1 /* red_7.png in Resources */,
@@ -2616,7 +2615,6 @@
 				10C801F918A755BB0079E0F1 /* red_3.png in Resources */,
 				10C8020318A755BB0079E0F1 /* yellow_10.png in Resources */,
 				10C801F018A755BB0079E0F1 /* blue_5.png in Resources */,
-				10C8020D18A755BB0079E0F1 /* Info.plist in Resources */,
 				10C801F718A755BB0079E0F1 /* red_10.png in Resources */,
 				10C801DC18A755BB0079E0F1 /* chalky-play-button-pressed.png in Resources */,
 				10C801FA18A755BB0079E0F1 /* red_4.png in Resources */,
@@ -3020,6 +3018,11 @@
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Chalky/Prefix.pch;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					NDEBUG,
+					USE_FILE32API,
+					CC_TARGET_OS_IPHONE,
+				);
 				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
 				INFOPLIST_FILE = "$(SRCROOT)/Chalky/Resources/Plists/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
@@ -3051,6 +3054,7 @@
 				10C8016118A751B40079E0F1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		10C8FD7918A751AB0079E0F1 /* Build configuration list for PBXProject "Chalky" */ = {
 			isa = XCConfigurationList;

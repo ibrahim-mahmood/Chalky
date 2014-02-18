@@ -53,12 +53,11 @@ void MainMenu::addBackground() {
     logo->setPosition(ccp(WIN_WIDTH/2, WIN_HEIGHT * 0.65));
     this->addChild(logo);
     
-    
 //    CCSkeletonAnimation *skeletonNode = CCSkeletonAnimation::createWithFile("chalky.json", "chalky.atlas");
 //	//skeletonNode->setMix("walk", "jump", 0.2f);
 //	//skeletonNode->setMix("jump", "walk", 0.4f);
 //    
-//	skeletonNode->setAnimation("ride", true);
+//	skeletonNode->setAnimation(RIDE_ANIMATION_NAME, true);
 //    skeletonNode->setPosition(ccp(WIN_WIDTH/2, WIN_HEIGHT * 0.35));
 //    
 //    this->addChild(skeletonNode);
@@ -66,10 +65,10 @@ void MainMenu::addBackground() {
 }
 
 void MainMenu::addButton() {
-    CCMenuItemImage *playButton = CCMenuItemImage::create("chalky-play-button.png", "chalky-play-button-pressed.png", this, menu_selector(MainMenu::playButtonPressed));
+    CCMenuItemImage *playButton = CCMenuItemImage::create(PLAY_BUTTON_NORMAL, PLAY_BUTTON_PRESSED, this, menu_selector(MainMenu::playButtonPressed));
     playButton->setPosition(ccp(WIN_WIDTH/2, WIN_HEIGHT * 0.35));
     
-    CCMenuItemImage *playHSMode = CCMenuItemImage::create("chalky-button.png", "chalky-button-pressed.png", this, menu_selector(MainMenu::playHSButtonPressed));
+    CCMenuItemImage *playHSMode = CCMenuItemImage::create(EMPTY_BUTTON_NORMAL, EMPTY_BUTTON_PRESSED, this, menu_selector(MainMenu::playHSButtonPressed));
     playHSMode->setPosition(ccp(WIN_WIDTH/2, WIN_HEIGHT * 0.20));
     
     CCLabelTTF *buttonLabel = CCLabelTTF::create("FUN MODE", CHALKY_FONT, CHALKY_FONT_SIZE);

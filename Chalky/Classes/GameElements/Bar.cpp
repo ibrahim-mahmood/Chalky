@@ -25,9 +25,6 @@ Bar* Bar::create(CCSprite *normalSprite, CCSprite *selectedSprite, CCSprite *dis
     Bar *b = new Bar();
     if (b != NULL && b->init(normalSprite, selectedSprite, disabledSprite)) {
         b->autorelease();
-//        b->setNormalImage(normalSprite);
-//        b->setSelectedImage(selectedSprite);
-//        b->setDisabledImage(disabledSprite);
         b->setTarget(b, menu_selector(Bar::barTapped));
     } else {
         delete b;

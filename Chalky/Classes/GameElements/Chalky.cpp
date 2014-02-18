@@ -63,19 +63,19 @@ void Chalky::update(float dt)
 {
     if (col == kChalkyBlue) {
         float oldChalkyPosition = this->getPositionX();
-        float newChalkyPosition = oldChalkyPosition + (CHALKY_MANAGER->chalky1Speed * dt);
+        float newChalkyPosition = oldChalkyPosition + (CHALKY_MANAGER->getFloatValueForKey(1, CHALKY_SPEED_KEY) * dt);
         this->setPosition(ccp(newChalkyPosition, this->getPositionY()));
         checkGameEnd(newChalkyPosition);
     }
     else if (col == kChalkyYellow) {
         float oldChalkyPosition = this->getPositionX();
-        float newChalkyPosition = oldChalkyPosition + (CHALKY_MANAGER->chalky2Speed * dt);
+        float newChalkyPosition = oldChalkyPosition + (CHALKY_MANAGER->getFloatValueForKey(2, CHALKY_SPEED_KEY) * dt);
         this->setPosition(ccp(newChalkyPosition, this->getPositionY()));
         checkGameEnd(newChalkyPosition);
     }
     else {
         float oldChalkyPosition = this->getPositionX();
-        float newChalkyPosition = oldChalkyPosition + (CHALKY_MANAGER->chalky3Speed * dt);
+        float newChalkyPosition = oldChalkyPosition + (CHALKY_MANAGER->getFloatValueForKey(3, CHALKY_SPEED_KEY) * dt);
         this->setPosition(ccp(newChalkyPosition, this->getPositionY()));
         checkGameEnd(newChalkyPosition);
     }
@@ -86,12 +86,7 @@ void Chalky::checkGameEnd(float chalkyPosition)
 {
     if (chalkyIndex >= CHALKY_MANAGER->totalSteps) {
         //GAME WIN CONDITION
-        if (type == kChalkySpecial) {
-            CHALKY_MANAGER->lastScore += CHALKY_MANAGER->specialPoints;
-        }
-        else {
-            CHALKY_MANAGER->lastScore += CHALKY_MANAGER->normalPoints;
-        }
+        CHALKY_MANAGER->updatePlayerScore(type);
         this->removeFromParentAndCleanup(true);
     }
     else {
@@ -114,7 +109,7 @@ void Chalky::checkGameEnd(float chalkyPosition)
 
 void Chalky::playRunningAnimation()
 {
-    this->m_sprite->setAnimation("ride", true);
+    this->m_sprite->setAnimation(RIDE_ANIMATION_NAME, true);
 }
 void Chalky::playFallingAnimation()
 {

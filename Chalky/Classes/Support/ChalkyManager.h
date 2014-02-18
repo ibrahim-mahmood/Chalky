@@ -59,32 +59,21 @@ public:
     int blueChalks;
     int yellowChalks;
     int redChalks;
-    
-    int chalky1Speed;
-    int chalky2Speed;
-    int chalky3Speed;
-    int dusterLevel1;
-    int dusterLevel2;
-    int dusterLevel3;
-    
+
     int currentLevel;
     
     int totalSteps;
     int barWidth;
-    int newChalkyInterval;
-    
-    float specialProbability;
-    int specialPoints;
-    int normalPoints;
-    int targetScore1;
-    int targetScore2;
-    int targetScore3;
-    int hsModeDuration;
-    int normalModeDuration;
     
     void loadGameData();
+    float getFloatValueForKey(int _numberToAppend, std::string _key);
+    float getFloatValueForKey(std::string _key);
+    void updatePlayerScore(bool _isSpecialChalky);
     
     CC_SYNTHESIZE(kGameMode, gameMode, GameMode);
+    CC_SYNTHESIZE_RETAIN(CCDictionary*, gameData, GameData);
+    
+    
 };
 
 #endif /* defined(__Chalky__ChalkyManager__) */

@@ -55,16 +55,16 @@ void HighScoreEnd::addBackground()
     background->setPosition(ccp(WIN_WIDTH/2, WIN_HEIGHT/2));
     this->addChild(background);
     
-    CCLabelTTF *successLabel1 = CCLabelTTF::create("Your Chalkies Made It", "chalky-button-pressed.png", 30.0);
+    CCLabelTTF *successLabel1 = CCLabelTTF::create("Your Chalkies Made It", EMPTY_BUTTON_PRESSED, 30.0);
     successLabel1->setPosition(ccp(WIN_WIDTH/2, WIN_HEIGHT * 0.85));
     this->addChild(successLabel1);
     
-    CCLabelTTF *scoreLabel = CCLabelTTF::create("SCORE", "chalky-button-pressed.png", 40.0);
+    CCLabelTTF *scoreLabel = CCLabelTTF::create("SCORE", EMPTY_BUTTON_PRESSED, 40.0);
     scoreLabel->setPosition(ccp(WIN_WIDTH/2, WIN_HEIGHT * 0.70));
     this->addChild(scoreLabel);
     
     CCString *scoreStr = CCString::createWithFormat("%i", CHALKY_MANAGER->lastScore);
-    CCLabelTTF *scoreLabel1 = CCLabelTTF::create(scoreStr->getCString(), "chalky-button-pressed.png", 30.0);
+    CCLabelTTF *scoreLabel1 = CCLabelTTF::create(scoreStr->getCString(), EMPTY_BUTTON_PRESSED, 30.0);
     scoreLabel1->setPosition(ccp(WIN_WIDTH/2, WIN_HEIGHT * 0.60));
     this->addChild(scoreLabel1);
     
@@ -72,14 +72,14 @@ void HighScoreEnd::addBackground()
 
 void HighScoreEnd::addButton()
 {
-    CCMenuItemImage *playButton = CCMenuItemImage::create("chalky-button.png", "chalky-button-pressed.png", this, menu_selector(HighScoreEnd::continueButtonPressed));
+    CCMenuItemImage *playButton = CCMenuItemImage::create(EMPTY_BUTTON_NORMAL, EMPTY_BUTTON_PRESSED, this, menu_selector(HighScoreEnd::continueButtonPressed));
     playButton->setPosition(ccp(WIN_WIDTH/2, WIN_HEIGHT * 0.35));
     
     CCLabelTTF *playButtonLabel = CCLabelTTF::create("AGAIN", CHALKY_FONT, CHALKY_FONT_SIZE);
     playButtonLabel->setPosition(ccp(playButton->getContentSize().width/2, playButton->getContentSize().height/2));
     playButton->addChild(playButtonLabel);
     
-    CCMenuItemImage *playHSMode = CCMenuItemImage::create("chalky-button.png", "chalky-button-pressed.png", this, menu_selector(HighScoreEnd::quitButtonPressed));
+    CCMenuItemImage *playHSMode = CCMenuItemImage::create(EMPTY_BUTTON_NORMAL, EMPTY_BUTTON_PRESSED, this, menu_selector(HighScoreEnd::quitButtonPressed));
     playHSMode->setPosition(ccp(WIN_WIDTH/2, WIN_HEIGHT * 0.20));
     
     CCLabelTTF *buttonLabel = CCLabelTTF::create("HOME", CHALKY_FONT, CHALKY_FONT_SIZE);

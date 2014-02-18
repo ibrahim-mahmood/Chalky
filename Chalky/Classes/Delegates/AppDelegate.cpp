@@ -11,10 +11,21 @@
 #include "cocos2d.h"
 #include "SimpleAudioEngine.h"
 #include "GamePlayScene.h"
-#include "MainMenu.h" 
+#include "MainMenu.h"
 
 USING_NS_CC;
 using namespace CocosDenshion;
+
+typedef struct tagResource
+{
+    cocos2d::CCSize size;
+    char directory[100];
+}Resource;
+
+static Resource smallResource  =  { cocos2d::CCSizeMake(480, 320),   "iphone" };
+static Resource mediumResource =  { cocos2d::CCSizeMake(1024, 768),  "ipad"   };
+static Resource largeResource  =  { cocos2d::CCSizeMake(2048, 1536), "ipadhd" };
+static cocos2d::CCSize designResolutionSize = cocos2d::CCSizeMake(480, 320);
 
 AppDelegate::AppDelegate()
 {
@@ -29,8 +40,9 @@ bool AppDelegate::applicationDidFinishLaunching()
 {
     // initialize director
     CCDirector *pDirector = CCDirector::sharedDirector();
-    pDirector->setOpenGLView(CCEGLView::sharedOpenGLView());
-
+    CCEGLView *pEGLView = CCEGLView::sharedOpenGLView();
+    pDirector->setOpenGLView(pEGLView);
+    
     // turn on display FPS
     pDirector->setDisplayStats(false);
 
