@@ -93,6 +93,5 @@ bool Bar::init(CCSprite *normalSprite, CCSprite *selectedSprite, CCSprite *disab
 void Bar::barTapped(CCObject* sender)
 {
     Bar *b = (Bar*)sender;
-    CCLog("BAR TAG IS : %i", b->getTag());
     b->setVisible(false);
 }

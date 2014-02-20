@@ -93,7 +93,6 @@ void Chalky::checkGameEnd(float chalkyPosition)
         int tag = 0;
         tag = chalkyPosition / CHALKY_MANAGER->barWidth;
         chalkyIndex = tag;
-        CCLog("BAR TAG IS : %i", tag);
         CCNode *parent = this->getParent();
         Bar *b = (Bar*)parent->getChildByTag(tag);
         if (b) {
@@ -113,7 +112,7 @@ void Chalky::playRunningAnimation()
 }
 void Chalky::playFallingAnimation()
 {
-    this->m_sprite->addAnimation("Falling", false);
+    this->m_sprite->addAnimation(FALL_ANIMATION_NAME, false);
     CCDelayTime *delay = CCDelayTime::create(0.5);
     CCCallFunc *call = CCCallFunc::create(this, callfunc_selector(Chalky::removeChalky));
     CCSequence *seq = CCSequence::create(delay, call, NULL);

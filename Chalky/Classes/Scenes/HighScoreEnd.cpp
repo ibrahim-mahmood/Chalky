@@ -55,16 +55,16 @@ void HighScoreEnd::addBackground()
     background->setPosition(ccp(WIN_WIDTH/2, WIN_HEIGHT/2));
     this->addChild(background);
     
-    CCLabelTTF *successLabel1 = CCLabelTTF::create("Your Chalkies Made It", EMPTY_BUTTON_PRESSED, 30.0);
+    CCLabelTTF *successLabel1 = CCLabelTTF::create("Your Chalkies Made It", CHALKY_FONT, 30.0);
     successLabel1->setPosition(ccp(WIN_WIDTH/2, WIN_HEIGHT * 0.85));
     this->addChild(successLabel1);
     
-    CCLabelTTF *scoreLabel = CCLabelTTF::create("SCORE", EMPTY_BUTTON_PRESSED, 40.0);
+    CCLabelTTF *scoreLabel = CCLabelTTF::create("SCORE", CHALKY_FONT, 40.0);
     scoreLabel->setPosition(ccp(WIN_WIDTH/2, WIN_HEIGHT * 0.70));
     this->addChild(scoreLabel);
     
     CCString *scoreStr = CCString::createWithFormat("%i", CHALKY_MANAGER->lastScore);
-    CCLabelTTF *scoreLabel1 = CCLabelTTF::create(scoreStr->getCString(), EMPTY_BUTTON_PRESSED, 30.0);
+    CCLabelTTF *scoreLabel1 = CCLabelTTF::create(scoreStr->getCString(), CHALKY_FONT, 30.0);
     scoreLabel1->setPosition(ccp(WIN_WIDTH/2, WIN_HEIGHT * 0.60));
     this->addChild(scoreLabel1);
     

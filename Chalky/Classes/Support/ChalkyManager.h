@@ -40,9 +40,9 @@ public:
 	~ChalkyManager();
 	
 	static ChalkyManager* sharedManager();
-    int chalky1Index;
-    int chalky2Index;
-    int chalky3Index;
+    int blueChalkyPosition;
+    int yellowChalkyPosition;
+    int redChalkyPosition;
     
     int blueBarToHide;
     int yellowBarToHide;
@@ -50,9 +50,9 @@ public:
     
     int indexToHideSpecial;
     
-    int bar1Height = WIN_HEIGHT/1.5;
-    int bar2Height = WIN_HEIGHT/2.2;
-    int bar3Height = WIN_HEIGHT/3.9;
+    int blueBarHeight = WIN_HEIGHT/1.5;
+    int yellowBarHeight = WIN_HEIGHT/2.2;
+    int redBarHeight = WIN_HEIGHT/3.9;
     
     int lastScore;
     
@@ -68,11 +68,14 @@ public:
     void loadGameData();
     float getFloatValueForKey(int _numberToAppend, std::string _key);
     float getFloatValueForKey(std::string _key);
+    std::string getStringForKey(std::string _key);
     void updatePlayerScore(bool _isSpecialChalky);
     
     CC_SYNTHESIZE(kGameMode, gameMode, GameMode);
     CC_SYNTHESIZE_RETAIN(CCDictionary*, gameData, GameData);
     
+    void resetGameState();
+    void loadLives();
     
 };
 

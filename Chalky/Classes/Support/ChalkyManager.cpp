@@ -14,12 +14,9 @@ static ChalkyManager *sharedInst = NULL;
 ChalkyManager::ChalkyManager() {
     
     gameData = NULL;
-    chalky1Index = 0;
-    chalky2Index = 0;
-    chalky3Index = 0;
-    blueChalks = 2;
-    yellowChalks = 1;
-    redChalks = 2;
+    blueChalkyPosition = 0;
+    yellowChalkyPosition = 0;
+    redChalkyPosition = 0;
     
     totalSteps = 0;
     gameMode = kModeUnknown;
@@ -61,10 +58,34 @@ float ChalkyManager::getFloatValueForKey(std::string _key)
     return ret_value;
 }
 
+std::string ChalkyManager::getStringForKey(std::string _key)
+{
+    std::string ret_value = std::string("");
+    if (gameData)
+        ret_value = (static_cast<CCString*>(gameData->objectForKey(_key)))->m_sString;
+    return ret_value;
+}
+
 void ChalkyManager::updatePlayerScore(bool _isSpecialChalky)
 {
     if (_isSpecialChalky)
         lastScore += getFloatValueForKey(POINTS_SPECIAL_KEY);
     else
         lastScore += getFloatValueForKey(POINTS_NORMAL_KEY);
+}
+
+void ChalkyManager::resetGameState()
+{
+    blueChalkyPosition = 0;
+    yellowChalkyPosition = 0;
+    redChalkyPosition = 0;
+    indexToHideSpecial = 0;
+    loadLives();
+}
+
+void ChalkyManager::loadLives()
+{
+    blueChalks = getFloatValueForKey(BLUE_LIVES_KEY);
+    yellowChalks = getFloatValueForKey(YELLOW_LIVES_KEY);
+    redChalks = getFloatValueForKey(RED_LIVES_KEY);
 }

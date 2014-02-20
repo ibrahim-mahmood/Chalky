@@ -31,7 +31,9 @@ private :
     virtual bool init(bool levelCleared);
     void addLayerAssets();
     void addBackground();
-    void addButton();
+    void addLabels();
+    void addButtons();
+    void updateLevel();
     
 };
 

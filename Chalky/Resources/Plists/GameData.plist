@@ -3,17 +3,17 @@
 <plist version="1.0">
 <dict>
 	<key>ChalkySpeed1</key>
-	<integer>50</integer>
+	<integer>25</integer>
 	<key>ChalkySpeed2</key>
-	<integer>40</integer>
+	<integer>20</integer>
 	<key>ChalkySpeed3</key>
-	<integer>60</integer>
+	<integer>30</integer>
 	<key>DusterSpeed1</key>
 	<integer>3</integer>
 	<key>DusterSpeed2</key>
 	<integer>2</integer>
 	<key>DusterSpeed3</key>
-	<integer>1</integer>
+	<integer>2</integer>
 	<key>InitialLevel</key>
 	<integer>1</integer>
 	<key>NewChalkyInterval</key>
@@ -34,5 +34,15 @@
 	<integer>100</integer>
 	<key>NormalModeDuration</key>
 	<integer>60</integer>
+	<key>BlueLives</key>
+	<string>3</string>
+	<key>YellowLives</key>
+	<string>3</string>
+	<key>RedLives</key>
+	<string>3</string>
+	<key>NormalModeDescription</key>
+	<string>Get Chalky safely across the path to complete level</string>
+	<key>HSModeDescription</key>
+	<string>Get as many Chalkies as you can to the end</string>
 </dict>
 </plist>

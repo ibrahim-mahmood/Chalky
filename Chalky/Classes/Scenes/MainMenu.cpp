@@ -52,16 +52,6 @@ void MainMenu::addBackground() {
     CCSprite *logo = CCSprite::create(CHALKY_LOGO);
     logo->setPosition(ccp(WIN_WIDTH/2, WIN_HEIGHT * 0.65));
     this->addChild(logo);
-    
-//    CCSkeletonAnimation *skeletonNode = CCSkeletonAnimation::createWithFile("chalky.json", "chalky.atlas");
-//	//skeletonNode->setMix("walk", "jump", 0.2f);
-//	//skeletonNode->setMix("jump", "walk", 0.4f);
-//    
-//	skeletonNode->setAnimation(RIDE_ANIMATION_NAME, true);
-//    skeletonNode->setPosition(ccp(WIN_WIDTH/2, WIN_HEIGHT * 0.35));
-//    
-//    this->addChild(skeletonNode);
-    
 }
 
 void MainMenu::addButton() {

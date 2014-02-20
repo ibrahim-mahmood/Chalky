@@ -33,56 +33,57 @@ private :
     virtual void onExit();
     void addLayerAssets();
     void addBackground();
+    void addTitleLabel();
     void addBarsForLevel(float level);
     void addChalkyForLevel(float level);
     bool init();
     void hideTileForBar(Duster* duster);
     
-    CC_SYNTHESIZE_RETAIN(CCArray *, levelBars1, LevelBars1);
-    CC_SYNTHESIZE_RETAIN(CCArray *, levelBars2, LevelBars2);
-    CC_SYNTHESIZE_RETAIN(CCArray *, levelBars3, LevelBars3);
+    CC_SYNTHESIZE_RETAIN(CCArray *, barsBlue, BarsBlue);
+    CC_SYNTHESIZE_RETAIN(CCArray *, barsYellow, BarsYellow);
+    CC_SYNTHESIZE_RETAIN(CCArray *, barsRed, barsRed);
     
     int barWidth;
     int barHeight;
     
     void startGameForLevel(float levelNo);
     void stopLoop();
-    void playChalkyLoseAnimation(CCSkeletonAnimation *chalkie);
+    void playChalkyLoseAnimation(CCSkeletonAnimation *chalkyToRemove);
     void gameLoop();
     
     void ccTouchesBegan(cocos2d::CCSet *touches, cocos2d::CCEvent *event);
 	void ccTouchesEnded(cocos2d::CCSet *touches, cocos2d::CCEvent *event);
     virtual void update(float dt);
     
-    CC_SYNTHESIZE_RETAIN(CCSkeletonAnimation*, chalky1, Chalky1);
-    CC_SYNTHESIZE_RETAIN(CCSkeletonAnimation*, chalky2, Chalky2);
-    CC_SYNTHESIZE_RETAIN(CCSkeletonAnimation*, chalky3, Chalky3);
+    CC_SYNTHESIZE_RETAIN(CCSkeletonAnimation*, chalkyBlue, ChalkyBlue);
+    CC_SYNTHESIZE_RETAIN(CCSkeletonAnimation*, chalkyYellow, ChalkyYellow);
+    CC_SYNTHESIZE_RETAIN(CCSkeletonAnimation*, chalkyRed, ChalkyRed);
 
     void updateChalkyIndex(int chalky);
-    void removeChalky1();
-    void removeChalky2();
-    void removeChalky3();
+    void removeChalkyBlue();
+    void removeChalkyYellow();
+    void removeChalkyRed();
     
     void checkGameEnd1(float chalkyPosition);
     void checkGameEnd2(float chalkyPosition);
     void checkGameEnd3(float chalkyPosition);
     
-    bool useChalkForChalkie(CCSkeletonAnimation * chalkie);
+    bool useChalkForChalkie(CCSkeletonAnimation * chalky);
     void gameEnd();
-    void hideChalkie1();
-    void hideChalkie2();
-    void hideChalkie3();
     
-    bool chalky1Special;
-    bool chalky2Special;
-    bool chalky3Special;
+    bool chalkySpecialBlue;
+    bool chalkySpecialYellow;
+    bool chalkySpecialRed;
     
     void addChalkiesRandomly();
     int startTag;
     int currentGameLevel;
     
     void goToHighScoreEndScreen();
-    void goToLevelEndScreen(bool levelCleared);
+    void goToLevelWinScreen();
+    void goToLevelLoseScreen();
+    
+    void setupGameElements();
 };
 
 
