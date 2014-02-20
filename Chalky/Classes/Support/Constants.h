@@ -4,12 +4,13 @@
 
 #define GAME_BACKGROUND             "background.jpg"
 #define CHALKY_LOGO                 "chalky-logo.png"
-
-#define BAR_TAG_2                   20
-#define BAR_TAG_3                   100
+#define MAX_INDEX_TO_REMOVE         8
+#define BAR_TAG_YELLOW              20
+#define BAR_TAG_RED                 100
 #define TILE_REMOVED_NOTIFICATION   "tileRemoved"
 #define CHALKY_FONT                 "chalkduster.ttf"
 #define CHALKY_FONT_SIZE            24.0f
+
 
 
 #define EMPTY_BUTTON_NORMAL         "chalky-button.png"

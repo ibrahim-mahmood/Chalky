@@ -11,8 +11,6 @@
 #pragma mark - constructor/destructor
 Bar::Bar()
 {
-
-    
 }
 
 Bar::~Bar()
@@ -91,18 +89,10 @@ bool Bar::init(CCSprite *normalSprite, CCSprite *selectedSprite, CCSprite *disab
     }
     return true;
 }
-                     
-                     
+
 void Bar::barTapped(CCObject* sender)
 {
     Bar *b = (Bar*)sender;
     CCLog("BAR TAG IS : %i", b->getTag());
     b->setVisible(false);
 }
-
-
-
-
-
-
-

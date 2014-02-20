@@ -109,11 +109,11 @@ void GamePlayScene::hideTileForBar(Duster * duster)
         switch (duster->dusterColor) {
             case 0:
             {
-                if (CHALKY_MANAGER->indexToHide1 == CHALKY_MANAGER->chalky1Index) {
+                if (CHALKY_MANAGER->blueBarToHide == CHALKY_MANAGER->chalky1Index) {
                     
                 }
                 else {
-                    Bar *b = (Bar*)this->getChildByTag(CHALKY_MANAGER->indexToHide1);
+                    Bar *b = (Bar*)this->getChildByTag(CHALKY_MANAGER->blueBarToHide);
                     if (b) {
                         if (b->isVisible()) {
                             b->setVisible(false);
@@ -124,11 +124,11 @@ void GamePlayScene::hideTileForBar(Duster * duster)
                 break;
             case 1:
             {
-                if (CHALKY_MANAGER->indexToHide2 == CHALKY_MANAGER->chalky2Index) {
+                if (CHALKY_MANAGER->yellowBarToHide == CHALKY_MANAGER->chalky2Index) {
                     
                 }
                 else {
-                    Bar *b = (Bar*)this->getChildByTag(CHALKY_MANAGER->indexToHide2 + BAR_TAG_2);
+                    Bar *b = (Bar*)this->getChildByTag(CHALKY_MANAGER->yellowBarToHide + BAR_TAG_YELLOW);
                     if (b) {
                         if (b->isVisible()) {
                             b->setVisible(false);
@@ -139,11 +139,11 @@ void GamePlayScene::hideTileForBar(Duster * duster)
                 break;
             case 2:
             {
-                if (CHALKY_MANAGER->indexToHide3 == CHALKY_MANAGER->chalky3Index) {
+                if (CHALKY_MANAGER->redBarToHide == CHALKY_MANAGER->chalky3Index) {
                     
                 }
                 else {
-                    Bar *b = (Bar*)this->getChildByTag(CHALKY_MANAGER->indexToHide3 + BAR_TAG_3);
+                    Bar *b = (Bar*)this->getChildByTag(CHALKY_MANAGER->redBarToHide + BAR_TAG_RED);
                     if (b) {
                         if (b->isVisible()) {
                             b->setVisible(false);
@@ -170,7 +170,7 @@ void GamePlayScene::hideTileForBar(Duster * duster)
                 break;
             case 1:
             {
-                Bar *b = (Bar*)this->getChildByTag(CHALKY_MANAGER->indexToHideSpecial + BAR_TAG_2);
+                Bar *b = (Bar*)this->getChildByTag(CHALKY_MANAGER->indexToHideSpecial + BAR_TAG_YELLOW);
                 if (b) {
                     if (b->isVisible()) {
                         b->setVisible(false);
@@ -180,7 +180,7 @@ void GamePlayScene::hideTileForBar(Duster * duster)
                 break;
             case 2:
             {
-                Bar *b = (Bar*)this->getChildByTag(CHALKY_MANAGER->indexToHideSpecial + BAR_TAG_3);
+                Bar *b = (Bar*)this->getChildByTag(CHALKY_MANAGER->indexToHideSpecial + BAR_TAG_RED);
                 if (b) {
                     if (b->isVisible()) {
                         b->setVisible(false);
@@ -199,11 +199,6 @@ void GamePlayScene::addBackground()
     CCSprite *background = CCSprite::create(GAME_BACKGROUND);
     background->setPosition(ccp(WIN_WIDTH/2, WIN_HEIGHT/2));
     this->addChild(background);
-    
-    CCSprite *progressBarBack = CCSprite::create("chalky-progress-bar.png");
-    progressBarBack->setPosition(ccp(0, WIN_HEIGHT));
-    this->addChild(progressBarBack);
-    progressBarBack->setAnchorPoint(ccp(0,1));
 }
 
 void GamePlayScene::addChalkyForLevel(float level)
@@ -358,7 +353,7 @@ void GamePlayScene::addBarsForLevel(float level)
                 b->setBarColor(kDusterBlue);
                 b->setAnchorPoint(ccp(0.0, 0.5));
                 b->setPosition(x, y);
-                b->setTag(BAR_TAG_3+i);
+                b->setTag(BAR_TAG_RED + i);
                 b->setEnabled(true);
                 this->addChild(b);
                 levelBars3->addObject(b);
@@ -372,7 +367,7 @@ void GamePlayScene::addBarsForLevel(float level)
             CCSprite *portal = CCSprite::create("chalky-portal-red.png");
             portal->setAnchorPoint(ccp(1,0.2));
             portal->setPosition(ccp(WIN_WIDTH,CHALKY_MANAGER->bar3Height));
-            this->addChild(portal,BAR_TAG_3);
+            this->addChild(portal,BAR_TAG_RED);
 
         }
         case 2:
@@ -392,7 +387,7 @@ void GamePlayScene::addBarsForLevel(float level)
                 b->setBarColor(kDusterYellow);
                 b->setAnchorPoint(ccp(0.0, 0.5));
                 b->setPosition(x, y);
-                b->setTag(BAR_TAG_2+i);
+                b->setTag(BAR_TAG_YELLOW + i);
                 b->setEnabled(true);
                 this->addChild(b);
                 levelBars2->addObject(b);
@@ -406,7 +401,7 @@ void GamePlayScene::addBarsForLevel(float level)
             CCSprite *portal = CCSprite::create("chalky-portal-yellow.png");
             portal->setAnchorPoint(ccp(1,0.2));
             portal->setPosition(ccp(WIN_WIDTH,CHALKY_MANAGER->bar2Height));
-            this->addChild(portal,BAR_TAG_3);
+            this->addChild(portal,BAR_TAG_RED);
 
         }
         case 1:
@@ -472,11 +467,11 @@ void GamePlayScene::ccTouchesEnded(CCSet *touches, CCEvent* event) {
     
     else if ((touchPoint.y >= CHALKY_MANAGER->bar2Height && touchPoint.y < (CHALKY_MANAGER->bar2Height + barHeight + 10)) || (touchPoint.y <= CHALKY_MANAGER->bar2Height && touchPoint.y > (CHALKY_MANAGER->bar2Height - barHeight - 10))) {
         tag = touchPoint.x/barWidth;
-        tag = (BAR_TAG_2+tag);
+        tag = (BAR_TAG_YELLOW + tag);
     }
     else if ((touchPoint.y >= CHALKY_MANAGER->bar3Height && touchPoint.y < (CHALKY_MANAGER->bar3Height + barHeight + 10)) || (touchPoint.y <= CHALKY_MANAGER->bar3Height && touchPoint.y > (CHALKY_MANAGER->bar3Height - barHeight - 10))) {
         tag = touchPoint.x/barWidth;
-        tag = (BAR_TAG_3+tag);
+        tag = (BAR_TAG_RED + tag);
     }
 
 
@@ -520,9 +515,9 @@ void GamePlayScene::goToLevelEndScreen(bool levelCleared)
 
 void GamePlayScene::gameLoop()
 {
-    CHALKY_MANAGER->indexToHide3 = 0;
-    CHALKY_MANAGER->indexToHide2 = 0;
-    CHALKY_MANAGER->indexToHide1 = 0;
+    CHALKY_MANAGER->redBarToHide = 0;
+    CHALKY_MANAGER->yellowBarToHide = 0;
+    CHALKY_MANAGER->blueBarToHide = 0;
     
     if (CHALKY_MANAGER->getGameMode() == kModeNormal) {
         switch ((int)currentGameLevel) {
@@ -534,23 +529,29 @@ void GamePlayScene::gameLoop()
                 
                 int chalky3Position = CHALKY_MANAGER->chalky3Index;
                 int randomIndex = rand()%(levelBars3->count() - chalky3Position) + chalky3Position;
-                //int randomIndex = rand()%(levelBars3->count());
-                CHALKY_MANAGER->indexToHide3 = randomIndex;
+                if (randomIndex > MAX_INDEX_TO_REMOVE) {
+                    randomIndex = MAX_INDEX_TO_REMOVE;
+                }
+                CHALKY_MANAGER->redBarToHide = randomIndex;
                 
             }
             case 2:
             {
                 int chalky2Position = CHALKY_MANAGER->chalky2Index;
                 int randomIndex = rand()%(levelBars2->count() - chalky2Position) + chalky2Position;
-                //int randomIndex = rand()%(levelBars2->count());
-                CHALKY_MANAGER->indexToHide2 = randomIndex;
+                if (randomIndex > MAX_INDEX_TO_REMOVE) {
+                    randomIndex = MAX_INDEX_TO_REMOVE;
+                }
+                CHALKY_MANAGER->yellowBarToHide = randomIndex;
             }
             case 1:
             {
                 int chalky1Position = CHALKY_MANAGER->chalky1Index;
                 int randomIndex = rand()%(levelBars1->count() - chalky1Position) + chalky1Position;
-                //int randomIndex = rand()%(levelBars1->count());
-                CHALKY_MANAGER->indexToHide1 = randomIndex;
+                if (randomIndex > MAX_INDEX_TO_REMOVE) {
+                    randomIndex = MAX_INDEX_TO_REMOVE;
+                }
+                CHALKY_MANAGER->blueBarToHide = randomIndex;
             }
                 
             default:
@@ -678,7 +679,7 @@ void GamePlayScene::checkGameEnd2(float chalkyPosition)
         int tag = 0;
         int index = 0;
         index = chalkyPosition / barWidth;
-        tag = (BAR_TAG_2 + index);
+        tag = (BAR_TAG_YELLOW + index);
         CHALKY_MANAGER->chalky2Index = index;
         CCLog("BAR TAG IS : %i", tag);
         Bar *b = (Bar*)this->getChildByTag(tag);
@@ -705,7 +706,7 @@ void GamePlayScene::checkGameEnd3(float chalkyPosition)
         int tag = 0;
         int index = 0;
         index = chalkyPosition / barWidth;
-        tag = (BAR_TAG_3 + index);
+        tag = (BAR_TAG_RED + index);
         CHALKY_MANAGER->chalky3Index = index;
         CCLog("BAR TAG IS : %i", tag);
         Bar *b = (Bar*)this->getChildByTag(tag);
@@ -740,7 +741,7 @@ void GamePlayScene::playChalkyLoseAnimation(CCSkeletonAnimation *chalky)
     float currentPositionY = b->getPositionY();
     float barSize = b->getContentSize().width / 2;
     float newPositionX = currentPositionX + barSize;
-    float newPositionY = currentPositionY - BAR_TAG_3;
+    float newPositionY = currentPositionY - BAR_TAG_RED;
     
     CCDelayTime *delay = CCDelayTime::create(0.5);
     if (chalky == chalky1) {
@@ -781,7 +782,7 @@ void GamePlayScene::removeChalky1()
 void GamePlayScene::removeChalky2()
 {
     chalky2Special = false;
-    CHALKY_MANAGER->chalky2Index = BAR_TAG_2;
+    CHALKY_MANAGER->chalky2Index = BAR_TAG_YELLOW;
     chalky2->setVisible(false);
     chalky2->stopAllActions();
     chalky2->removeFromParentAndCleanup(true);
@@ -810,7 +811,7 @@ void GamePlayScene::hideChalkie3()
 void GamePlayScene::removeChalky3()
 {
     chalky3Special = false;
-    CHALKY_MANAGER->chalky3Index = BAR_TAG_3;
+    CHALKY_MANAGER->chalky3Index = BAR_TAG_RED;
     chalky3->setVisible(false);
     chalky3->stopAllActions();
     chalky3->removeFromParentAndCleanup(true);

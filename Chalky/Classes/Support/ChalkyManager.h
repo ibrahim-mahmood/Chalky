@@ -44,9 +44,9 @@ public:
     int chalky2Index;
     int chalky3Index;
     
-    int indexToHide1;
-    int indexToHide2;
-    int indexToHide3;
+    int blueBarToHide;
+    int yellowBarToHide;
+    int redBarToHide;
     
     int indexToHideSpecial;
     

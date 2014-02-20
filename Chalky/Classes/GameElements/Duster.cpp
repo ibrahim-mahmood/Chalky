@@ -9,6 +9,8 @@
 #include "Duster.h"
 #include "ChalkyManager.h"
 #include "SimpleAudioEngine.h"
+
+#define ERASING_SOUND_FILE   "erasing.m4a"
 Duster::Duster()
 {
     initialPosition = CCPoint(0.0, 0.0);
@@ -73,7 +75,7 @@ void Duster::runRubbingAnimation()
 
 void Duster::playDusterSound()
 {
-    CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("erasing.m4a");
+    CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect(ERASING_SOUND_FILE);
 }
 
 void Duster::removeFromView()
@@ -85,7 +87,9 @@ void Duster::calculateInitialPosition()
     initialPosition = CCPointMake(0.0, 0.0);
 }
 void Duster::calculateFinalPosition()
-{
+{if (randomIndex > MAX_INDEX_TO_REMOVE) {
+    randomIndex = MAX_INDEX_TO_REMOVE;
+}
     CCSprite * image = CCSprite::create("blue_0.png");
     
     float width = image->getContentSize().width;
@@ -93,11 +97,11 @@ void Duster::calculateFinalPosition()
         case kModeNormal:
         {
             if(dusterColor == kDusterBlue)
-                finalPosition = CCPointMake(width * CHALKY_MANAGER->indexToHide1, CHALKY_MANAGER->bar1Height);
+                finalPosition = CCPointMake(width * CHALKY_MANAGER->blueBarToHide, CHALKY_MANAGER->bar1Height);
             else if(dusterColor == kDusterYellow)
-                finalPosition = CCPointMake(width * CHALKY_MANAGER->indexToHide2, CHALKY_MANAGER->bar2Height);
+                finalPosition = CCPointMake(width * CHALKY_MANAGER->yellowBarToHide, CHALKY_MANAGER->bar2Height);
             else if(dusterColor == kDusterRed)
-                finalPosition = CCPointMake(width * CHALKY_MANAGER->indexToHide3, CHALKY_MANAGER->bar3Height);
+                finalPosition = CCPointMake(width * CHALKY_MANAGER->redBarToHide, CHALKY_MANAGER->bar3Height);
         }
         break;
         case kModeHS:
