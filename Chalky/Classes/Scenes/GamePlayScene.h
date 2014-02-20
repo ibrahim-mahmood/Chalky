@@ -82,8 +82,7 @@ private :
     int currentGameLevel;
     
     void goToHighScoreEndScreen();
-    void goToLevelWinScreen();
-    void goToLevelLoseScreen();
+    void goToLevelEndScreen(bool levelCleared);
 };
 
 

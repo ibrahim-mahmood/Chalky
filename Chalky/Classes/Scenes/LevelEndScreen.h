@@ -1,31 +1,34 @@
 //
-//  LevelWinScreen.h
+//  LevelEndScreen.h
 //  Chalky
 //
 //  Created by Ibrahim on 23/09/2013.
 //
 //
 
-#ifndef __Chalky__LevelWinScreen__
-#define __Chalky__LevelWinScreen__
+#ifndef __Chalky__LevelEndScreen__
+#define __Chalky__LevelEndScreen__
 
 #include <iostream>
 #include "cocos2d.h"
 USING_NS_CC;
-class LevelWinScreen : public CCLayer
+class LevelEndScreen : public CCLayer
 {
 public:
     CCScene* scene();
-    CREATE_FUNC(LevelWinScreen);
+    static LevelEndScreen* create(bool levelCleared);
     
     void continueButtonPressed();
     void quitButtonPressed();
 private :
     
-    LevelWinScreen();
-    ~LevelWinScreen();
+    bool levelSuccess;
+    
+    LevelEndScreen();
+    ~LevelEndScreen();
     virtual void onEnter();
     virtual void onExit();
+    virtual bool init(bool levelCleared);
     void addLayerAssets();
     void addBackground();
     void addButton();
@@ -33,4 +36,4 @@ private :
 };
 
 
-#endif /* defined(__Chalky__LevelWinScreen__) */
+#endif /* defined(__Chalky__LevelEndScreen__) */

@@ -116,8 +116,7 @@
 		10C8018018A753670079E0F1 /* Duster.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 10C8016B18A753670079E0F1 /* Duster.cpp */; };
 		10C8018118A753670079E0F1 /* GamePlayScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 10C8016E18A753670079E0F1 /* GamePlayScene.cpp */; };
 		10C8018218A753670079E0F1 /* HighScoreEnd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 10C8017018A753670079E0F1 /* HighScoreEnd.cpp */; };
-		10C8018318A753670079E0F1 /* LevelLoseScreen.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 10C8017218A753670079E0F1 /* LevelLoseScreen.cpp */; };
-		10C8018418A753670079E0F1 /* LevelWinScreen.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 10C8017418A753670079E0F1 /* LevelWinScreen.cpp */; };
+		10C8018418A753670079E0F1 /* LevelEndScreen.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 10C8017418A753670079E0F1 /* LevelEndScreen.cpp */; };
 		10C8018518A753670079E0F1 /* MainMenu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 10C8017618A753670079E0F1 /* MainMenu.cpp */; };
 		10C8018618A753670079E0F1 /* ChalkyManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 10C8017918A753670079E0F1 /* ChalkyManager.cpp */; };
 		10C801D318A755BB0079E0F1 /* background.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 10C8018918A755BB0079E0F1 /* background.jpg */; };
@@ -587,10 +586,8 @@
 		10C8016F18A753670079E0F1 /* GamePlayScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GamePlayScene.h; sourceTree = "<group>"; };
 		10C8017018A753670079E0F1 /* HighScoreEnd.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HighScoreEnd.cpp; sourceTree = "<group>"; };
 		10C8017118A753670079E0F1 /* HighScoreEnd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HighScoreEnd.h; sourceTree = "<group>"; };
-		10C8017218A753670079E0F1 /* LevelLoseScreen.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LevelLoseScreen.cpp; sourceTree = "<group>"; };
-		10C8017318A753670079E0F1 /* LevelLoseScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LevelLoseScreen.h; sourceTree = "<group>"; };
-		10C8017418A753670079E0F1 /* LevelWinScreen.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LevelWinScreen.cpp; sourceTree = "<group>"; };
-		10C8017518A753670079E0F1 /* LevelWinScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LevelWinScreen.h; sourceTree = "<group>"; };
+		10C8017418A753670079E0F1 /* LevelEndScreen.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LevelEndScreen.cpp; sourceTree = "<group>"; };
+		10C8017518A753670079E0F1 /* LevelEndScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LevelEndScreen.h; sourceTree = "<group>"; };
 		10C8017618A753670079E0F1 /* MainMenu.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MainMenu.cpp; sourceTree = "<group>"; };
 		10C8017718A753670079E0F1 /* MainMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainMenu.h; sourceTree = "<group>"; };
 		10C8017918A753670079E0F1 /* ChalkyManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ChalkyManager.cpp; sourceTree = "<group>"; };
@@ -1487,10 +1484,8 @@
 				10C8016F18A753670079E0F1 /* GamePlayScene.h */,
 				10C8017018A753670079E0F1 /* HighScoreEnd.cpp */,
 				10C8017118A753670079E0F1 /* HighScoreEnd.h */,
-				10C8017218A753670079E0F1 /* LevelLoseScreen.cpp */,
-				10C8017318A753670079E0F1 /* LevelLoseScreen.h */,
-				10C8017418A753670079E0F1 /* LevelWinScreen.cpp */,
-				10C8017518A753670079E0F1 /* LevelWinScreen.h */,
+				10C8017418A753670079E0F1 /* LevelEndScreen.cpp */,
+				10C8017518A753670079E0F1 /* LevelEndScreen.h */,
 				10C8017618A753670079E0F1 /* MainMenu.cpp */,
 				10C8017718A753670079E0F1 /* MainMenu.h */,
 			);
@@ -2706,7 +2701,7 @@
 				10C8FDD818A751AC0079E0F1 /* CCActionTiledGrid.cpp in Sources */,
 				10C8008218A751B20079E0F1 /* AnimationStateData.cpp in Sources */,
 				10C8FF2A18A751AF0079E0F1 /* CCSpriteBatchNode.cpp in Sources */,
-				10C8018418A753670079E0F1 /* LevelWinScreen.cpp in Sources */,
+				10C8018418A753670079E0F1 /* LevelEndScreen.cpp in Sources */,
 				10C8002D18A751B20079E0F1 /* CCControlPotentiometer.cpp in Sources */,
 				10C8FE8C18A751AD0079E0F1 /* CCClippingNode.cpp in Sources */,
 				10C8018518A753670079E0F1 /* MainMenu.cpp in Sources */,
@@ -2771,7 +2766,6 @@
 				10C8FF6918A751B00079E0F1 /* unzip.cpp in Sources */,
 				10C8003918A751B20079E0F1 /* CCControlSwitch.cpp in Sources */,
 				10C8001718A751B20079E0F1 /* CCComController.cpp in Sources */,
-				10C8018318A753670079E0F1 /* LevelLoseScreen.cpp in Sources */,
 				10C8FF5B18A751B00079E0F1 /* tinyxml2.cpp in Sources */,
 				10C8003018A751B20079E0F1 /* CCControlSaturationBrightnessPicker.cpp in Sources */,
 				10C8FDFF18A751AC0079E0F1 /* CCDataVisitor.cpp in Sources */,

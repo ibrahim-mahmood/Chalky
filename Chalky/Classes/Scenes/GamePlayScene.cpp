@@ -11,8 +11,7 @@
 #include "Duster.h"
 #include "Chalky.h"
 #include "HighScoreEnd.h"
-#include "LevelLoseScreen.h"
-#include "LevelWinScreen.h"
+#include "LevelEndScreen.h"
 #include "Constants.h"
 
 
@@ -510,17 +509,12 @@ void GamePlayScene::goToHighScoreEndScreen()
     CCDirector::sharedDirector()->replaceScene(pScene->scene());
 }
 
-void GamePlayScene::goToLevelLoseScreen()
+void GamePlayScene::goToLevelEndScreen(bool levelCleared)
 {
-    LevelLoseScreen *pScene = LevelLoseScreen::create();
+    LevelEndScreen *pScene = LevelEndScreen::create(levelCleared);
     CCDirector::sharedDirector()->replaceScene(pScene->scene());
 }
 
-void GamePlayScene::goToLevelWinScreen()
-{
-    LevelWinScreen *pScene = LevelWinScreen::create();
-    CCDirector::sharedDirector()->replaceScene(pScene->scene());
-}
 
 #pragma mark - Game Loop
 
@@ -628,7 +622,7 @@ void GamePlayScene::update(float dt)
         }
         
         if (CHALKY_MANAGER->lastScore >= CHALKY_MANAGER->getFloatValueForKey(currentGameLevel, LEVEL_TARGET_KEY)) {
-            goToLevelWinScreen();
+            goToLevelEndScreen(true);
         }
     }
 }

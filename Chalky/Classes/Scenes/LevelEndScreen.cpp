@@ -1,95 +1,131 @@
 //
-//  LevelLoseScreen.cpp
+//  LevelEndScreen.cpp
 //  Chalky
 //
 //  Created by Ibrahim on 23/09/2013.
 //
 //
 
-#include "LevelLoseScreen.h"
-#include "LevelWinScreen.h"
+#include "LevelEndScreen.h"
 #include "ChalkyManager.h"
 #include "GamePlayScene.h"
 #include "MainMenu.h"
 #include "Constants.h"
 
+#define SUCCESS_TITLE           "Success!"
+#define FAILED_TITLE            "Failed!"
+#define SUCCESS_DESCRIPTION     "Your Chalkies Made It"
+#define FAILED_DESCRIPTION      "Your Chalkies Didn't Make It"
 #pragma mark - Initializations
-LevelLoseScreen::LevelLoseScreen()
+LevelEndScreen::LevelEndScreen()
+{
+    levelSuccess = false;
+}
+
+LevelEndScreen::~LevelEndScreen()
 {
 }
 
-LevelLoseScreen::~LevelLoseScreen()
-{
-}
-
-void LevelLoseScreen::onEnter()
+void LevelEndScreen::onEnter()
 {
     CCLayer::onEnter();
     addLayerAssets();
     
 }
 
-void LevelLoseScreen::onExit()
+void LevelEndScreen::onExit()
 {
     CCLayer::onExit();
     removeAllChildrenWithCleanup(true);
 }
 
-CCScene* LevelLoseScreen::scene()
+CCScene* LevelEndScreen::scene()
 {
 	CCScene *scene = CCScene::create();
     scene->addChild(this);
 	return scene;
 }
 
+LevelEndScreen* LevelEndScreen::create(bool levelCleared)
+{
+    LevelEndScreen *screen = new LevelEndScreen();
+    if(screen != NULL && screen->init(levelCleared)) {
+        screen->autorelease();
+    } else {
+        delete screen;
+        screen = NULL;
+    }
+    return screen;
+}
+
+bool LevelEndScreen::init(bool levelCleared)
+{
+    if(!CCLayer::init())
+        return false;
+    
+    levelSuccess = levelCleared;
+    return true;
+}
+
 
 #pragma mark - Add Assets
-
-void LevelLoseScreen::addLayerAssets()
+void LevelEndScreen::addLayerAssets()
 {
+    if (levelSuccess)
+        CHALKY_MANAGER->currentLevel++;
+    
     addBackground();
     addButton();
 }
 
-void LevelLoseScreen::addBackground()
+void LevelEndScreen::addBackground()
 {
     CCSprite *background = CCSprite::create(GAME_BACKGROUND);
     background->setPosition(ccp(WIN_WIDTH/2, WIN_HEIGHT/2));
     this->addChild(background);
     
     int level = CHALKY_MANAGER->currentLevel;
+    //Limit total levels to 3
     if (level > 3)
-    {
         level = 3;
-    }
+    
     CCString *levelStr = CCString::createWithFormat("LEVEL %i", level);
     CCLabelTTF *levelLabel = CCLabelTTF::create(levelStr->getCString(), EMPTY_BUTTON_PRESSED, 40.0);
     levelLabel->setPosition(ccp(WIN_WIDTH/2, WIN_HEIGHT * 0.85));
     this->addChild(levelLabel);
     
-    CCLabelTTF *successLabel = CCLabelTTF::create("Failed!", EMPTY_BUTTON_PRESSED, 30.0);
-    successLabel->setPosition(ccp(WIN_WIDTH/2, WIN_HEIGHT * 0.75));
-    this->addChild(successLabel);
+    CCLabelTTF *statusLabel;
+    CCLabelTTF *descriptionLabel;
+    if (levelSuccess){
+        statusLabel = CCLabelTTF::create(SUCCESS_TITLE, EMPTY_BUTTON_PRESSED, 30.0);
+        descriptionLabel = CCLabelTTF::create(SUCCESS_DESCRIPTION, EMPTY_BUTTON_PRESSED, 30.0);
+    }
+    else {
+        statusLabel = CCLabelTTF::create(FAILED_TITLE, EMPTY_BUTTON_PRESSED, 30.0);
+        descriptionLabel = CCLabelTTF::create(FAILED_DESCRIPTION, EMPTY_BUTTON_PRESSED, 30.0);
+    }
     
-    CCLabelTTF *successLabel1 = CCLabelTTF::create("Your Chalkies Didn't Make It", EMPTY_BUTTON_PRESSED, 30.0);
-    successLabel1->setPosition(ccp(WIN_WIDTH/2, WIN_HEIGHT * 0.65));
-    this->addChild(successLabel1);
+    statusLabel->setPosition(ccp(WIN_WIDTH/2, WIN_HEIGHT * 0.75));
+    descriptionLabel->setPosition(ccp(WIN_WIDTH/2, WIN_HEIGHT * 0.65));
+    
+    this->addChild(statusLabel);
+    this->addChild(descriptionLabel);
     
     CCLabelTTF *scoreLabel = CCLabelTTF::create("SCORE", EMPTY_BUTTON_PRESSED, 40.0);
     scoreLabel->setPosition(ccp(WIN_WIDTH/2, WIN_HEIGHT/2));
     this->addChild(scoreLabel);
     
     CCString *scoreStr = CCString::createWithFormat("%i", CHALKY_MANAGER->lastScore);
-    CCLabelTTF *scoreLabel1 = CCLabelTTF::create(scoreStr->getCString(), EMPTY_BUTTON_PRESSED, 30.0);
-    scoreLabel1->setPosition(ccp(WIN_WIDTH/2, WIN_HEIGHT/2));
-    this->addChild(scoreLabel1);
+    CCLabelTTF *playerScoreLabel = CCLabelTTF::create(scoreStr->getCString(), EMPTY_BUTTON_PRESSED, 30.0);
+    playerScoreLabel->setPosition(ccp(WIN_WIDTH/2, WIN_HEIGHT/2));
+    this->addChild(playerScoreLabel);
     
 }
 
-void LevelLoseScreen::addButton()
+void LevelEndScreen::addButton()
 {
     if (CHALKY_MANAGER->currentLevel > 3) {
-        CCMenuItemImage *playHSMode = CCMenuItemImage::create(EMPTY_BUTTON_NORMAL, EMPTY_BUTTON_PRESSED, this, menu_selector(LevelWinScreen::quitButtonPressed));
+        CCMenuItemImage *playHSMode = CCMenuItemImage::create(EMPTY_BUTTON_NORMAL, EMPTY_BUTTON_PRESSED, this, menu_selector(LevelEndScreen::quitButtonPressed));
         playHSMode->setPosition(ccp(WIN_WIDTH/2, WIN_HEIGHT * 0.35));
         
         CCLabelTTF *buttonLabel = CCLabelTTF::create("HOME", CHALKY_FONT, CHALKY_FONT_SIZE);
@@ -102,14 +138,14 @@ void LevelLoseScreen::addButton()
         this->addChild(menu);
     }
     else {
-        CCMenuItemImage *playButton = CCMenuItemImage::create(EMPTY_BUTTON_NORMAL, EMPTY_BUTTON_PRESSED, this, menu_selector(LevelWinScreen::continueButtonPressed));
+        CCMenuItemImage *playButton = CCMenuItemImage::create(EMPTY_BUTTON_NORMAL, EMPTY_BUTTON_PRESSED, this, menu_selector(LevelEndScreen::continueButtonPressed));
         playButton->setPosition(ccp(WIN_WIDTH/2, WIN_HEIGHT * 0.35));
         
-        CCLabelTTF *playButtonLabel = CCLabelTTF::create("RETRY", CHALKY_FONT, CHALKY_FONT_SIZE);
+        CCLabelTTF *playButtonLabel = CCLabelTTF::create("CONTINUE", CHALKY_FONT, CHALKY_FONT_SIZE);
         playButtonLabel->setPosition(ccp(playButton->getContentSize().width/2, playButton->getContentSize().height/2));
         playButton->addChild(playButtonLabel);
         
-        CCMenuItemImage *playHSMode = CCMenuItemImage::create(EMPTY_BUTTON_NORMAL, EMPTY_BUTTON_PRESSED, this, menu_selector(LevelWinScreen::quitButtonPressed));
+        CCMenuItemImage *playHSMode = CCMenuItemImage::create(EMPTY_BUTTON_NORMAL, EMPTY_BUTTON_PRESSED, this, menu_selector(LevelEndScreen::quitButtonPressed));
         playHSMode->setPosition(ccp(WIN_WIDTH/2, WIN_HEIGHT * 0.20));
         
         CCLabelTTF *buttonLabel = CCLabelTTF::create("HOME", CHALKY_FONT, CHALKY_FONT_SIZE);
@@ -125,14 +161,19 @@ void LevelLoseScreen::addButton()
 }
 
 #pragma mark - Button Press Events
-void LevelLoseScreen::continueButtonPressed()
+
+void LevelEndScreen::continueButtonPressed()
 {
     GamePlayScene *pScene = GamePlayScene::create();
     CCDirector::sharedDirector()->replaceScene(pScene->scene());
 }
 
-void LevelLoseScreen::quitButtonPressed()
+void LevelEndScreen::quitButtonPressed()
 {
+    //Reset current level
+    if (CHALKY_MANAGER->currentLevel > 3) {
+        CHALKY_MANAGER->currentLevel = 1;
+    }
     MainMenu *pScene = MainMenu::create();
     CCDirector::sharedDirector()->replaceScene(pScene->scene());
 }
