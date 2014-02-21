@@ -78,7 +78,7 @@ void GamePlayScene::addLayerAssets()
 {
     srand (time(NULL));
     addBackground();
-    addTitleLabel();
+    addLabels();
     addBarsForLevel(currentGameLevel);
     startGameForLevel(currentGameLevel);
     if (CHALKY_MANAGER->getGameMode() == kModeNormal) {
@@ -215,21 +215,30 @@ void GamePlayScene::addBackground()
     
 }
 
-void GamePlayScene::addTitleLabel()
+void GamePlayScene::addLabels()
 {
     CCLabelTTF *titleLabel;
-    if (CHALKY_MANAGER->getGameMode() == kModeNormal)
+    if (CHALKY_MANAGER->getGameMode() == kModeNormal) {
         titleLabel = CCLabelTTF::create(CHALKY_MANAGER->getStringForKey(NORMAL_DESCRIPTION_KEY).c_str(), CHALKY_FONT, CHALKY_FONT_SIZE);
-    else if (CHALKY_MANAGER->getGameMode() == kModeHS)
+        
+        CCLabelTTF *targetLabel = CCLabelTTF::create(CCString::createWithFormat("TARGET %d", (int)CHALKY_MANAGER->getFloatValueForKey(currentGameLevel, LEVEL_TARGET_KEY))->getCString(), CHALKY_FONT, CHALKY_FONT_SIZE);
+        targetLabel->setPosition(ccp(WIN_WIDTH/2, WIN_HEIGHT * 0.875));
+        this->addChild(targetLabel);
+    }
+    else {
         titleLabel = CCLabelTTF::create(CHALKY_MANAGER->getStringForKey(HS_DESCRIPTION_KEY).c_str(), CHALKY_FONT, CHALKY_FONT_SIZE);
-    
-    titleLabel->setPosition(ccp(WIN_WIDTH/2, WIN_HEIGHT * 0.95));
+    }
+    titleLabel->setPosition(ccp(WIN_WIDTH/2, WIN_HEIGHT * 0.975));
     this->addChild(titleLabel);
     
     
     timerLabel = CCLabelTTF::create(CCString::createWithFormat(TIME_REMAINING_STRING, countdownTimer)->getCString(), CHALKY_FONT, CHALKY_FONT_SIZE);
-    timerLabel->setPosition(ccp(WIN_WIDTH/2, WIN_HEIGHT * 0.90));
+    timerLabel->setPosition(ccp(WIN_WIDTH/2, WIN_HEIGHT * 0.925));
     this->addChild(timerLabel);
+    
+    CCLabelTTF *detailsLabel = CCLabelTTF::create("Each Chalky gives 5 Points. Colored Chalkies are worth 10", CHALKY_FONT, CHALKY_FONT_SIZE);
+    detailsLabel->setPosition(ccp(WIN_WIDTH/2, WIN_HEIGHT * 0.10));
+    this->addChild(detailsLabel);
     
 }
 
@@ -247,43 +256,6 @@ void GamePlayScene::setSpecialChalkyStatus()
         else {
             chalkySpecialRed = true;
         }
-    }
-}
-
-void GamePlayScene::addChalkyNumber(int chalkyNumber)
-{
-    setSpecialChalkyStatus();
-    if (chalkyNumber == 1) {
-        chalkyBlue = NULL;
-        this->setChalkyBlue(CCSkeletonAnimation::createWithFile(CHALKY_ANIMATION_JSON, CHALKY_ANIMATION_ATLAS));
-        chalkyBlue->setAnimation(RIDE_ANIMATION_NAME, true);
-        chalkyBlue->setPosition(ccp(0.0,CHALKY_MANAGER->blueBarHeight));
-        chalkyBlue->setAnchorPoint(ccp(0.5,0));
-        chalkyBlue->setScale(0.5);
-        if (chalkySpecialBlue)
-            chalkyBlue->setColor(ccc3(45, 196, 255));
-        this->addChild(chalkyBlue,10);
-        
-        CCSprite *blueChalk = CCSprite::create("chalky-blue-chalk.png");
-        blueChalk->setPosition(ccp(WIN_WIDTH/1.5, 0));
-        this->addChild(blueChalk);
-        blueChalk->setAnchorPoint(ccp(0.5,0));
-    }
-    if (chalkyNumber == 2) {
-        chalkyYellow = NULL;
-        this->setChalkyYellow(CCSkeletonAnimation::createWithFile(CHALKY_ANIMATION_JSON, CHALKY_ANIMATION_ATLAS));
-        chalkyYellow->setAnimation(RIDE_ANIMATION_NAME, true);
-        chalkyYellow->setPosition(ccp(0.0,CHALKY_MANAGER->yellowBarHeight));
-        chalkyYellow->setAnchorPoint(ccp(0.5,0));
-        chalkyYellow->setScale(0.5);
-        if (chalkySpecialYellow)
-            chalkyYellow->setColor(ccc3(252, 198, 8));
-        this->addChild(chalkyYellow, 10);
-        
-        CCSprite *yellow = CCSprite::create("chalky-yellow-chalk.png");
-        yellow->setPosition(ccp(WIN_WIDTH/2.5, 0));
-        this->addChild(yellow);
-        yellow->setAnchorPoint(ccp(0.5,0));
     }
 }
 
@@ -305,11 +277,6 @@ void GamePlayScene::addChalkyForLevel(float level)
             if (chalkySpecialRed)
                 chalkyRed->setColor(ccc3(244, 0, 7));
             this->addChild(chalkyRed);
-            
-            CCSprite *red= CCSprite::create("chalky-red-chalk.png");
-            red->setPosition(ccp(WIN_WIDTH/3.5, 0));
-            this->addChild(red);
-            red->setAnchorPoint(ccp(0.5,0));
         }
             break;
         case 2:
@@ -324,11 +291,6 @@ void GamePlayScene::addChalkyForLevel(float level)
                 chalkyYellow->setColor(ccc3(252, 198, 8));
             this->addChild(chalkyYellow);
             
-            CCSprite *yellow = CCSprite::create("chalky-yellow-chalk.png");
-            yellow->setPosition(ccp(WIN_WIDTH/2.5, 0));
-            this->addChild(yellow);
-            yellow->setAnchorPoint(ccp(0.5,0));
-            
         }
             break;
         case 1:
@@ -342,11 +304,6 @@ void GamePlayScene::addChalkyForLevel(float level)
             if (chalkySpecialBlue)
                 chalkyBlue->setColor(ccc3(45, 196, 255));
             this->addChild(chalkyBlue,10);
-            
-            CCSprite *blueChalk = CCSprite::create("chalky-blue-chalk.png");
-            blueChalk->setPosition(ccp(WIN_WIDTH/1.5, 0));
-            this->addChild(blueChalk);
-            blueChalk->setAnchorPoint(ccp(0.5,0));
             
         }
             break;
@@ -598,6 +555,7 @@ void GamePlayScene::gameLoop()
     CHALKY_MANAGER->yellowBarToHide = 0;
     CHALKY_MANAGER->blueBarToHide = 0;
     
+    //calculate which bar the duster will remove
     if (CHALKY_MANAGER->getGameMode() == kModeNormal) {
         switch ((int)currentGameLevel) {
             case 5:
@@ -665,8 +623,9 @@ void GamePlayScene::gameLoop()
         CHALKY_MANAGER->indexToHideHSMode = randomIndex;
     }
     
-    kDusterColor col;
     
+    //Choose type of duster for removing next line (Red/Blue/Yellow)
+    kDusterColor col;
     if (currentGameLevel == 1) {
         col = kDusterBlue;
     }
@@ -695,7 +654,7 @@ void GamePlayScene::gameLoop()
         }
     }
     
-    Duster * devil = Duster::create("duster.png", col);
+    Duster * devil = Duster::create(DUSTER_IMAGE, col);
     this->addChild(devil,10);
 }
 
@@ -735,7 +694,7 @@ void GamePlayScene::updateTimer(float dt)
 {
     totalTimePlayed += dt;
     int totalTimePlayedInt = (int)totalTimePlayed;
-    if (totalTimePlayedInt == previousTimeCount + 1) {
+    if (totalTimePlayedInt == previousTimeCount + 1 && countdownTimer > 0) {
         countdownTimer--;
         previousTimeCount++;
     }
@@ -767,10 +726,7 @@ void GamePlayScene::checkGameEndBlue(float chalkyPosition)
         Bar *b = (Bar*)this->getChildByTag(tag);
         if (b) {
             if (!b->isVisible()) {
-                //GAME LOSE CONDITION
-                if(!chalkyYellow && !chalkyRed)
-                    gameEnd();
-                playChalkyLoseAnimation(chalkyBlue);
+                playChalkyFallAnimation(chalkyBlue);
             }
         }
     }
@@ -793,10 +749,7 @@ void GamePlayScene::checkGameEndYellow(float chalkyPosition)
         Bar *b = (Bar*)this->getChildByTag(tag);
         if (b) {
             if (!b->isVisible()) {
-                //GAME LOSE CONDITION
-                if(!chalkyBlue && !chalkyRed)
-                    gameEnd();
-                playChalkyLoseAnimation(chalkyYellow);
+                playChalkyFallAnimation(chalkyYellow);
             }
         }
     }
@@ -819,16 +772,13 @@ void GamePlayScene::checkGameEndRed(float chalkyPosition)
         Bar *b = (Bar*)this->getChildByTag(tag);
         if (b) {
             if (!b->isVisible()) {
-                //GAME LOSE CONDITION
-                if(!chalkyBlue && !chalkyYellow)
-                    gameEnd();
-                playChalkyLoseAnimation(chalkyRed);
+                playChalkyFallAnimation(chalkyRed);
             }
         }
     }
 }
 
-void GamePlayScene::playChalkyLoseAnimation(CCSkeletonAnimation *chalkyToRemove)
+void GamePlayScene::playChalkyFallAnimation(CCSkeletonAnimation *chalkyToRemove)
 {
     CCDelayTime *delay = CCDelayTime::create(0.5);
     chalkyToRemove->addAnimation(FALL_ANIMATION_NAME, false);
@@ -853,7 +803,7 @@ void GamePlayScene::removeChalkyBlue()
     chalkyBlue->stopAllActions();
     chalkyBlue->removeFromParentAndCleanup(true);
     chalkyBlue = NULL;
-    addChalkyNumber(1);
+    addChalkyForLevel(1);
 }
 void GamePlayScene::removeChalkyYellow()
 {
@@ -863,7 +813,7 @@ void GamePlayScene::removeChalkyYellow()
     chalkyYellow->stopAllActions();
     chalkyYellow->removeFromParentAndCleanup(true);
     chalkyYellow = NULL;
-    addChalkyNumber(2);
+    addChalkyForLevel(2);
 }
 
 void GamePlayScene::removeChalkyRed()
@@ -875,10 +825,5 @@ void GamePlayScene::removeChalkyRed()
     chalkyRed->removeFromParentAndCleanup(true);
     chalkyRed = NULL;
     addChalkyForLevel(3);
-    
-}
-
-void GamePlayScene::gameEnd()
-{
     
 }

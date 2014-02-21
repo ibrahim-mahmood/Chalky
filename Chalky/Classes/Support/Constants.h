@@ -14,7 +14,7 @@
 #define EMPTY_BUTTON_PRESSED        "chalky-button-pressed.png"
 #define PLAY_BUTTON_NORMAL          "chalky-play-button.png"
 #define PLAY_BUTTON_PRESSED         "chalky-play-button-pressed.png"
-
+#define DUSTER_IMAGE                "duster.png"
 #define TILE_REMOVED_NOTIFICATION   "tileRemoved"
 #define RIDE_ANIMATION_NAME         "ride"
 #define FALL_ANIMATION_NAME         "Falling"

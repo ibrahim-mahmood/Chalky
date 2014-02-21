@@ -9,6 +9,7 @@
 #include "Chalky.h"
 #include "ChalkyManager.h"
 #include "Bar.h"
+#include "GamePlayScene.h"
 
 Chalky::Chalky()
 {
@@ -61,6 +62,9 @@ void Chalky::stopChalkyUpdate()
 
 void Chalky::update(float dt)
 {
+    if (dynamic_cast<GamePlayScene*>(this->getParent())) {
+        ((GamePlayScene*)this->getParent())->updateTimer(dt);
+    }
     if (col == kChalkyBlue) {
         float oldChalkyPosition = getPositionX();
         float newChalkyPosition = oldChalkyPosition + (CHALKY_MANAGER->getFloatValueForKey(1, CHALKY_SPEED_KEY) * dt);

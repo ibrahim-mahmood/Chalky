@@ -91,3 +91,4 @@ void ChalkyManager::loadLives()
     yellowChalks = getFloatValueForKey(YELLOW_LIVES_KEY);
     redChalks = getFloatValueForKey(RED_LIVES_KEY);
 }
+

@@ -26,6 +26,7 @@ class GamePlayScene : public CCLayer
 public :
     CCScene* scene();
     CREATE_FUNC(GamePlayScene);
+    void updateTimer(float dt);
 private :
     GamePlayScene();
     ~GamePlayScene();
@@ -33,10 +34,9 @@ private :
     virtual void onExit();
     void addLayerAssets();
     void addBackground();
-    void addTitleLabel();
+    void addLabels();
     void addBarsForLevel(float level);
     void addChalkyForLevel(float level);
-    void addChalkyNumber(int chalkyNumber);
     bool init();
     void hideTileForBar(Duster* duster);
     
@@ -49,7 +49,7 @@ private :
     
     void startGameForLevel(float levelNo);
     void stopLoop();
-    void playChalkyLoseAnimation(CCSkeletonAnimation *chalkyToRemove);
+    void playChalkyFallAnimation(CCSkeletonAnimation *chalkyToRemove);
     void gameLoop();
     
     void ccTouchesBegan(cocos2d::CCSet *touches, cocos2d::CCEvent *event);
@@ -68,8 +68,6 @@ private :
     void checkGameEndYellow(float chalkyPosition);
     void checkGameEndRed(float chalkyPosition);
     
-    void gameEnd();
-    
     bool chalkySpecialBlue;
     bool chalkySpecialYellow;
     bool chalkySpecialRed;
@@ -86,7 +84,6 @@ private :
     
     CCLabelTTF *timerLabel;
     int countdownTimer;
-    void updateTimer(float dt);
     float totalTimePlayed;
     int previousTimeCount;
     

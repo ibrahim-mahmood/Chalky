@@ -125,7 +125,7 @@ void LevelEndScreen::addLabels()
 
 void LevelEndScreen::addButtons()
 {
-    if (CHALKY_MANAGER->currentLevel > 3) {
+    if (CHALKY_MANAGER->currentLevel >= 3) {
         CCMenuItemImage *playHSMode = CCMenuItemImage::create(EMPTY_BUTTON_NORMAL, EMPTY_BUTTON_PRESSED, this, menu_selector(LevelEndScreen::quitButtonPressed));
         playHSMode->setPosition(ccp(WIN_WIDTH/2, WIN_HEIGHT * 0.35));
         

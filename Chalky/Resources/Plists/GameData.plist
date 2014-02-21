@@ -3,11 +3,11 @@
 <plist version="1.0">
 <dict>
 	<key>ChalkySpeed1</key>
-	<integer>50</integer>
+	<integer>48</integer>
 	<key>ChalkySpeed2</key>
 	<integer>45</integer>
 	<key>ChalkySpeed3</key>
-	<integer>55</integer>
+	<integer>51</integer>
 	<key>DusterSpeed1</key>
 	<integer>3</integer>
 	<key>DusterSpeed2</key>

@@ -121,11 +121,6 @@
 		10C8018618A753670079E0F1 /* ChalkyManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 10C8017918A753670079E0F1 /* ChalkyManager.cpp */; };
 		10C801D318A755BB0079E0F1 /* background.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 10C8018918A755BB0079E0F1 /* background.jpg */; };
 		10C801D418A755BB0079E0F1 /* chalky-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 10C8018A18A755BB0079E0F1 /* chalky-logo.png */; };
-		10C801D518A755BB0079E0F1 /* chalky-blue-chalk.png in Resources */ = {isa = PBXBuildFile; fileRef = 10C8018C18A755BB0079E0F1 /* chalky-blue-chalk.png */; };
-		10C801D618A755BB0079E0F1 /* chalky-progress-bar-fill.png in Resources */ = {isa = PBXBuildFile; fileRef = 10C8018D18A755BB0079E0F1 /* chalky-progress-bar-fill.png */; };
-		10C801D718A755BB0079E0F1 /* chalky-progress-bar.png in Resources */ = {isa = PBXBuildFile; fileRef = 10C8018E18A755BB0079E0F1 /* chalky-progress-bar.png */; };
-		10C801D818A755BB0079E0F1 /* chalky-red-chalk.png in Resources */ = {isa = PBXBuildFile; fileRef = 10C8018F18A755BB0079E0F1 /* chalky-red-chalk.png */; };
-		10C801D918A755BB0079E0F1 /* chalky-yellow-chalk.png in Resources */ = {isa = PBXBuildFile; fileRef = 10C8019018A755BB0079E0F1 /* chalky-yellow-chalk.png */; };
 		10C801DA18A755BB0079E0F1 /* chalky-button-pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 10C8019218A755BB0079E0F1 /* chalky-button-pressed.png */; };
 		10C801DB18A755BB0079E0F1 /* chalky-button.png in Resources */ = {isa = PBXBuildFile; fileRef = 10C8019318A755BB0079E0F1 /* chalky-button.png */; };
 		10C801DC18A755BB0079E0F1 /* chalky-play-button-pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 10C8019418A755BB0079E0F1 /* chalky-play-button-pressed.png */; };
@@ -596,11 +591,6 @@
 		10C8017C18A753670079E0F1 /* Macros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Macros.h; sourceTree = "<group>"; };
 		10C8018918A755BB0079E0F1 /* background.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = background.jpg; sourceTree = "<group>"; };
 		10C8018A18A755BB0079E0F1 /* chalky-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chalky-logo.png"; sourceTree = "<group>"; };
-		10C8018C18A755BB0079E0F1 /* chalky-blue-chalk.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chalky-blue-chalk.png"; sourceTree = "<group>"; };
-		10C8018D18A755BB0079E0F1 /* chalky-progress-bar-fill.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chalky-progress-bar-fill.png"; sourceTree = "<group>"; };
-		10C8018E18A755BB0079E0F1 /* chalky-progress-bar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chalky-progress-bar.png"; sourceTree = "<group>"; };
-		10C8018F18A755BB0079E0F1 /* chalky-red-chalk.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chalky-red-chalk.png"; sourceTree = "<group>"; };
-		10C8019018A755BB0079E0F1 /* chalky-yellow-chalk.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chalky-yellow-chalk.png"; sourceTree = "<group>"; };
 		10C8019218A755BB0079E0F1 /* chalky-button-pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chalky-button-pressed.png"; sourceTree = "<group>"; };
 		10C8019318A755BB0079E0F1 /* chalky-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chalky-button.png"; sourceTree = "<group>"; };
 		10C8019418A755BB0079E0F1 /* chalky-play-button-pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chalky-play-button-pressed.png"; sourceTree = "<group>"; };
@@ -1507,7 +1497,6 @@
 			isa = PBXGroup;
 			children = (
 				10C8018818A755BB0079E0F1 /* Background */,
-				10C8018B18A755BB0079E0F1 /* Bars */,
 				10C8019118A755BB0079E0F1 /* Buttons */,
 				10C8019618A755BB0079E0F1 /* Characters */,
 				10C8019C18A755BB0079E0F1 /* Icons&Splash */,
@@ -1527,18 +1516,6 @@
 				10C8018A18A755BB0079E0F1 /* chalky-logo.png */,
 			);
 			path = Background;
-			sourceTree = "<group>";
-		};
-		10C8018B18A755BB0079E0F1 /* Bars */ = {
-			isa = PBXGroup;
-			children = (
-				10C8018C18A755BB0079E0F1 /* chalky-blue-chalk.png */,
-				10C8018D18A755BB0079E0F1 /* chalky-progress-bar-fill.png */,
-				10C8018E18A755BB0079E0F1 /* chalky-progress-bar.png */,
-				10C8018F18A755BB0079E0F1 /* chalky-red-chalk.png */,
-				10C8019018A755BB0079E0F1 /* chalky-yellow-chalk.png */,
-			);
-			path = Bars;
 			sourceTree = "<group>";
 		};
 		10C8019118A755BB0079E0F1 /* Buttons */ = {
@@ -2564,7 +2541,6 @@
 				10C801E918A755BB0079E0F1 /* iTunesArtwork in Resources */,
 				10C8020218A755BB0079E0F1 /* yellow_1.png in Resources */,
 				10C8020618A755BB0079E0F1 /* yellow_4.png in Resources */,
-				10C801D718A755BB0079E0F1 /* chalky-progress-bar.png in Resources */,
 				10C801D418A755BB0079E0F1 /* chalky-logo.png in Resources */,
 				10C801EC18A755BB0079E0F1 /* blue_10.png in Resources */,
 				10C8020B18A755BB0079E0F1 /* yellow_8.png in Resources */,
@@ -2575,7 +2551,6 @@
 				10C8020C18A755BB0079E0F1 /* yellow_9.png in Resources */,
 				10C801E018A755BB0079E0F1 /* duster.png in Resources */,
 				10C8020718A755BB0079E0F1 /* yellow_5.png in Resources */,
-				10C801D618A755BB0079E0F1 /* chalky-progress-bar-fill.png in Resources */,
 				10C801DD18A755BB0079E0F1 /* chalky-play-button.png in Resources */,
 				10C801EA18A755BB0079E0F1 /* blue_0.png in Resources */,
 				10C8020518A755BB0079E0F1 /* yellow_3.png in Resources */,
@@ -2587,9 +2562,7 @@
 				10C8020A18A755BB0079E0F1 /* yellow_8-1.png in Resources */,
 				10C8020818A755BB0079E0F1 /* yellow_6.png in Resources */,
 				10C801DE18A755BB0079E0F1 /* chalky.atlas in Resources */,
-				10C801D818A755BB0079E0F1 /* chalky-red-chalk.png in Resources */,
 				10C801FB18A755BB0079E0F1 /* red_5.png in Resources */,
-				10C801D918A755BB0079E0F1 /* chalky-yellow-chalk.png in Resources */,
 				10C801EB18A755BB0079E0F1 /* blue_1.png in Resources */,
 				10C801ED18A755BB0079E0F1 /* blue_2.png in Resources */,
 				10C801F518A755BB0079E0F1 /* red_0.png in Resources */,
@@ -2600,7 +2573,6 @@
 				10C801E318A755BB0079E0F1 /* Icon-72.png in Resources */,
 				10C801E118A755BB0079E0F1 /* chalky.json in Resources */,
 				10C801FD18A755BB0079E0F1 /* red_7.png in Resources */,
-				10C801D518A755BB0079E0F1 /* chalky-blue-chalk.png in Resources */,
 				10C8021018A755BB0079E0F1 /* chalky-portal-red.png in Resources */,
 				10C8020018A755BB0079E0F1 /* red_9.png in Resources */,
 				10C801EF18A755BB0079E0F1 /* blue_4.png in Resources */,
