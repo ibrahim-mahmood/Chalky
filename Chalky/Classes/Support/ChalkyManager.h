@@ -48,7 +48,7 @@ public:
     int yellowBarToHide;
     int redBarToHide;
     
-    int indexToHideSpecial;
+    int indexToHideHSMode;
     
     int blueBarHeight = WIN_HEIGHT/1.5;
     int yellowBarHeight = WIN_HEIGHT/2.2;

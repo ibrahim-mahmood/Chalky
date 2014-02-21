@@ -45,38 +45,38 @@ bool Chalky::init(const char *jsonName, const char *atlasName, float positionX, 
 
 void Chalky::addSpriteToLayer(const char *jsonName, const char *atlasName)
 {
-    this->m_sprite = CCSkeletonAnimation::createWithFile(jsonName, atlasName);
-    this->addChild(this->m_sprite);
+    m_sprite = CCSkeletonAnimation::createWithFile(jsonName, atlasName);
+    addChild(m_sprite);
 }
 
 void Chalky::startChalkyUpdate()
 {
-    this->scheduleUpdate();
+    scheduleUpdate();
 }
 
 void Chalky::stopChalkyUpdate()
 {
-    this->unscheduleUpdate();
+    unscheduleUpdate();
 }
 
 void Chalky::update(float dt)
 {
     if (col == kChalkyBlue) {
-        float oldChalkyPosition = this->getPositionX();
+        float oldChalkyPosition = getPositionX();
         float newChalkyPosition = oldChalkyPosition + (CHALKY_MANAGER->getFloatValueForKey(1, CHALKY_SPEED_KEY) * dt);
-        this->setPosition(ccp(newChalkyPosition, this->getPositionY()));
+        setPosition(ccp(newChalkyPosition, getPositionY()));
         checkGameEnd(newChalkyPosition);
     }
     else if (col == kChalkyYellow) {
-        float oldChalkyPosition = this->getPositionX();
+        float oldChalkyPosition = getPositionX();
         float newChalkyPosition = oldChalkyPosition + (CHALKY_MANAGER->getFloatValueForKey(2, CHALKY_SPEED_KEY) * dt);
-        this->setPosition(ccp(newChalkyPosition, this->getPositionY()));
+        setPosition(ccp(newChalkyPosition, getPositionY()));
         checkGameEnd(newChalkyPosition);
     }
     else {
-        float oldChalkyPosition = this->getPositionX();
+        float oldChalkyPosition = getPositionX();
         float newChalkyPosition = oldChalkyPosition + (CHALKY_MANAGER->getFloatValueForKey(3, CHALKY_SPEED_KEY) * dt);
-        this->setPosition(ccp(newChalkyPosition, this->getPositionY()));
+        setPosition(ccp(newChalkyPosition, getPositionY()));
         checkGameEnd(newChalkyPosition);
     }
     
@@ -87,17 +87,18 @@ void Chalky::checkGameEnd(float chalkyPosition)
     if (chalkyIndex >= CHALKY_MANAGER->totalSteps) {
         //GAME WIN CONDITION
         CHALKY_MANAGER->updatePlayerScore(type);
-        this->removeFromParentAndCleanup(true);
+        removeFromParentAndCleanup(true);
     }
     else {
         int tag = 0;
         tag = chalkyPosition / CHALKY_MANAGER->barWidth;
         chalkyIndex = tag;
-        CCNode *parent = this->getParent();
+        CCNode *parent = getParent();
         Bar *b = (Bar*)parent->getChildByTag(tag);
         if (b) {
             if (!b->isVisible()) {
-                playFallingAnimation();
+                //playFallingAnimation();
+                removeChalky();
             }
         }
         else {
@@ -108,26 +109,26 @@ void Chalky::checkGameEnd(float chalkyPosition)
 
 void Chalky::playRunningAnimation()
 {
-    this->m_sprite->setAnimation(RIDE_ANIMATION_NAME, true);
+    m_sprite->setAnimation(RIDE_ANIMATION_NAME, true);
 }
 void Chalky::playFallingAnimation()
 {
-    this->m_sprite->addAnimation(FALL_ANIMATION_NAME, false);
+    m_sprite->addAnimation(FALL_ANIMATION_NAME, false);
     CCDelayTime *delay = CCDelayTime::create(0.5);
     CCCallFunc *call = CCCallFunc::create(this, callfunc_selector(Chalky::removeChalky));
     CCSequence *seq = CCSequence::create(delay, call, NULL);
-    this->m_sprite->runAction(seq);
+    m_sprite->runAction(seq);
 }
 
 void Chalky::setChalkyColor(const ccColor3B &color)
 {
-    this->m_sprite->setColor(color);
+    m_sprite->setColor(color);
 }
 
 void Chalky::removeChalky()
 {
-    this->m_sprite->stopAllActions();
-    this->m_sprite->removeFromParentAndCleanup(true);
-    this->m_sprite = NULL;
-    this->removeFromParentAndCleanup(true);
+    m_sprite->stopAllActions();
+    m_sprite->removeFromParentAndCleanup(true);
+    m_sprite = NULL;
+    removeFromParentAndCleanup(true);
 }

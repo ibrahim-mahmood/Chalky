@@ -36,6 +36,7 @@ private :
     void addTitleLabel();
     void addBarsForLevel(float level);
     void addChalkyForLevel(float level);
+    void addChalkyNumber(int chalkyNumber);
     bool init();
     void hideTileForBar(Duster* duster);
     
@@ -59,16 +60,14 @@ private :
     CC_SYNTHESIZE_RETAIN(CCSkeletonAnimation*, chalkyYellow, ChalkyYellow);
     CC_SYNTHESIZE_RETAIN(CCSkeletonAnimation*, chalkyRed, ChalkyRed);
 
-    void updateChalkyIndex(int chalky);
     void removeChalkyBlue();
     void removeChalkyYellow();
     void removeChalkyRed();
     
-    void checkGameEnd1(float chalkyPosition);
-    void checkGameEnd2(float chalkyPosition);
-    void checkGameEnd3(float chalkyPosition);
+    void checkGameEndBlue(float chalkyPosition);
+    void checkGameEndYellow(float chalkyPosition);
+    void checkGameEndRed(float chalkyPosition);
     
-    bool useChalkForChalkie(CCSkeletonAnimation * chalky);
     void gameEnd();
     
     bool chalkySpecialBlue;
@@ -84,6 +83,15 @@ private :
     void goToLevelLoseScreen();
     
     void setupGameElements();
+    
+    CCLabelTTF *timerLabel;
+    int countdownTimer;
+    void updateTimer(float dt);
+    float totalTimePlayed;
+    int previousTimeCount;
+    
+    void setSpecialChalkyStatus();
+    
 };
 
 

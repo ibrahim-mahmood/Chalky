@@ -17,10 +17,11 @@ ChalkyManager::ChalkyManager() {
     blueChalkyPosition = 0;
     yellowChalkyPosition = 0;
     redChalkyPosition = 0;
+    currentLevel = 1;
     
     totalSteps = 0;
     gameMode = kModeUnknown;
-    indexToHideSpecial = 0;
+    indexToHideHSMode = 0;
 }
 
 ChalkyManager::~ChalkyManager() {
@@ -79,7 +80,8 @@ void ChalkyManager::resetGameState()
     blueChalkyPosition = 0;
     yellowChalkyPosition = 0;
     redChalkyPosition = 0;
-    indexToHideSpecial = 0;
+    indexToHideHSMode = 0;
+    lastScore = 0;
     loadLives();
 }
 

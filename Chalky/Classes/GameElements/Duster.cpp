@@ -105,11 +105,11 @@ void Duster::calculateFinalPosition()
         case kModeHS:
         {
             if(dusterColor == kDusterBlue)
-                finalPosition = CCPointMake(width * CHALKY_MANAGER->indexToHideSpecial, CHALKY_MANAGER->blueBarHeight);
+                finalPosition = CCPointMake(width * CHALKY_MANAGER->indexToHideHSMode, CHALKY_MANAGER->blueBarHeight);
             else if(dusterColor == kDusterYellow)
-                finalPosition = CCPointMake(width * CHALKY_MANAGER->indexToHideSpecial, CHALKY_MANAGER->yellowBarHeight);
+                finalPosition = CCPointMake(width * CHALKY_MANAGER->indexToHideHSMode, CHALKY_MANAGER->yellowBarHeight);
             else if(dusterColor == kDusterRed)
-                finalPosition = CCPointMake(width * CHALKY_MANAGER->indexToHideSpecial, CHALKY_MANAGER->redBarHeight);
+                finalPosition = CCPointMake(width * CHALKY_MANAGER->indexToHideHSMode, CHALKY_MANAGER->redBarHeight);
         }
         break;
         

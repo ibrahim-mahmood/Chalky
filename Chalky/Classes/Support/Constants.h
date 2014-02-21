@@ -18,6 +18,8 @@
 #define TILE_REMOVED_NOTIFICATION   "tileRemoved"
 #define RIDE_ANIMATION_NAME         "ride"
 #define FALL_ANIMATION_NAME         "Falling"
+#define CHALKY_ANIMATION_JSON       "chalky.json"
+#define CHALKY_ANIMATION_ATLAS      "chalky.atlas"
 
 #define GAME_DATA_FILE              "GameData.plist"
 #define CHALKY_SPEED_KEY            "ChalkySpeed"
